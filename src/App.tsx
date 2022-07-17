@@ -1,3 +1,3 @@
-export function App() {
-  return <h1>Hello World</h1>
+export function App(): JSX.Element {
+  return <h1>Hello World</h1>;
 }
