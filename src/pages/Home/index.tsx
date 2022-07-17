@@ -1,5 +1,6 @@
 import { Coffee, Package, ShoppingCart, Timer } from "phosphor-react";
 import coffeeDelivery from "../../assets/coffee-delivery.png";
+import { CoffeeSelector } from "./CoffeeSelector";
 import { Background, HomeContainer, HomeContent, HomeOption } from "./styles";
 
 export function Home() {
@@ -45,6 +46,8 @@ export function Home() {
           <img src={coffeeDelivery} alt="Coffee Delivery" />
         </HomeContainer>
       </Background>
+
+      <CoffeeSelector />
     </main>
   );
 }
