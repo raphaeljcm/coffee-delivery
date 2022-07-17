@@ -12,9 +12,9 @@ export function Cart({ variant, weight, color }: CartProps) {
   return (
     <CartContainer color="yellow">
       {variant === "simple" ? (
-        <ShoppingCartSimple size={32} />
+        <ShoppingCartSimple size={22} />
       ) : (
-        <ShoppingCart size={32} weight={weight} color={color} />
+        <ShoppingCart size={22} weight={weight} color={color} />
       )}
     </CartContainer>
   );
