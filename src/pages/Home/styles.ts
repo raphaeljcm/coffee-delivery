@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import backgroundImg from "../../assets/home-background.png";
+import styled from 'styled-components';
+import backgroundImg from '../../assets/home-background.png';
 
 export const Background = styled.div`
-  background: ${(props) => `url(${backgroundImg}) no-repeat center,
+  background: ${props => `url(${backgroundImg}) no-repeat center,
     linear-gradient(
       0deg,
       ${props.theme.white} 0%,
@@ -30,32 +30,35 @@ export const HomeContent = styled.div`
   > div:first-child {
     h1 {
       font-weight: 800;
-      font-family: "Baloo 2", sans-serif;
+      font-family: 'Baloo 2', sans-serif;
       line-height: 130%;
       font-size: 3rem;
       margin-bottom: 1rem;
-      color: ${(props) => props.theme["base-title"]};
+      color: ${props => props.theme['base-title']};
     }
 
     p {
       font-size: 1.25rem;
       line-height: 130%;
-      color: ${(props) => props.theme["base-subtitle"]};
+      color: ${props => props.theme['base-subtitle']};
     }
   }
 
   > div:last-child {
     display: flex;
     flex-wrap: wrap;
-    column-gap: 2.5rem;
-    row-gap: 1.25rem;
+    gap: 2.5rem;
   }
 `;
 
 export const HomeOption = styled.div`
   display: flex;
   align-items: center;
-  color: ${(props) => props.theme["base-text"]};
+  color: ${props => props.theme['base-text']};
+
+  &:last-child {
+    margin-top: 1rem;
+  }
 
   div {
     display: flex;
@@ -65,5 +68,24 @@ export const HomeOption = styled.div`
     line-height: 130%;
 
     margin-right: 0.75rem;
+  }
+`;
+
+export const CoffeesWrapper = styled.section`
+  padding-bottom: 5rem;
+
+  h2 {
+    font-family: 'Baloo 2', sans-serif;
+    font-weight: 800;
+    font-size: 2rem;
+    line-height: 130%;
+    color: ${props => props.theme['base-subtitle']};
+    margin-bottom: 3.375rem;
+  }
+
+  > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem 2rem;
   }
 `;

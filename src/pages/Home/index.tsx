@@ -1,7 +1,13 @@
-import { Coffee, Package, ShoppingCart, Timer } from "phosphor-react";
-import coffeeDelivery from "../../assets/coffee-delivery.png";
-import { CoffeeSelector } from "./CoffeeSelector";
-import { Background, HomeContainer, HomeContent, HomeOption } from "./styles";
+import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react';
+import coffeeDelivery from '../../assets/coffee-delivery.png';
+import { CoffeeSelector } from './CoffeeSelector';
+import {
+  Background,
+  CoffeesWrapper,
+  HomeContainer,
+  HomeContent,
+  HomeOption,
+} from './styles';
 
 export function Home() {
   return (
@@ -17,37 +23,46 @@ export function Home() {
               </p>
             </div>
             <div>
-              <HomeOption color="#C47F17">
-                <div>
-                  <ShoppingCart size={16} weight="fill" color="#FAFAFA" />
-                </div>
-                Compra simples e segura
-              </HomeOption>
-              <HomeOption color="#574F4D">
-                <div>
-                  <Package size={16} weight="fill" color="#FAFAFA" />
-                </div>
-                Embalagem mantém o café intacto
-              </HomeOption>
-              <HomeOption color="#DBAC2C">
-                <div>
-                  <Timer size={16} weight="fill" color="#FAFAFA" />
-                </div>
-                Entrega rápida e rastreada
-              </HomeOption>
-              <HomeOption color="#8047F8">
-                <div>
-                  <Coffee size={16} weight="fill" color="#FAFAFA" />
-                </div>
-                O café chega fresquinho até você
-              </HomeOption>
+              <div>
+                <HomeOption color="#C47F17">
+                  <div>
+                    <ShoppingCart size={16} weight="fill" color="#FAFAFA" />
+                  </div>
+                  Compra simples e segura
+                </HomeOption>
+                <HomeOption color="#574F4D">
+                  <div>
+                    <Package size={16} weight="fill" color="#FAFAFA" />
+                  </div>
+                  Embalagem mantém o café intacto
+                </HomeOption>
+              </div>
+              <div>
+                <HomeOption color="#DBAC2C">
+                  <div>
+                    <Timer size={16} weight="fill" color="#FAFAFA" />
+                  </div>
+                  Entrega rápida e rastreada
+                </HomeOption>
+                <HomeOption color="#8047F8">
+                  <div>
+                    <Coffee size={16} weight="fill" color="#FAFAFA" />
+                  </div>
+                  O café chega fresquinho até você
+                </HomeOption>
+              </div>
             </div>
           </HomeContent>
           <img src={coffeeDelivery} alt="Coffee Delivery" />
         </HomeContainer>
       </Background>
 
-      <CoffeeSelector />
+      <CoffeesWrapper className="container">
+        <h2>Nossos cafés</h2>
+        <div>
+          <CoffeeSelector />
+        </div>
+      </CoffeesWrapper>
     </main>
   );
 }

@@ -1,8 +1,8 @@
-import { MapPin } from "phosphor-react";
-import { NavLink } from "react-router-dom";
-import logo from "../../assets/logo.svg";
-import { Cart } from "../Cart";
-import { HeaderContainer, Map } from "./styles";
+import { MapPin } from 'phosphor-react';
+import { NavLink } from 'react-router-dom';
+import logo from '../../assets/logo.svg';
+import { Cart } from '../Cart';
+import { HeaderContainer, Map } from './styles';
 
 export function Header() {
   return (
@@ -16,7 +16,7 @@ export function Header() {
           Porto Alegre, RS
         </Map>
         <NavLink to="/checkout" title="Checkout">
-          <Cart color="#C47F17" weight="fill" />
+          <Cart color="#C47F17" weight="fill" containerColor="yellow" />
         </NavLink>
       </div>
     </HeaderContainer>

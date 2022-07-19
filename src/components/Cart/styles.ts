@@ -1,9 +1,9 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components';
 
 const CART_COLORS = {
-  yellow: "yellow-light",
-  purple: "purple",
-  purpleDark: "purple-dark",
+  yellow: 'yellow-light',
+  purple: 'purple',
+  purpleDark: 'purple-dark',
 } as const;
 
 interface CartContainerProps {
@@ -12,8 +12,8 @@ interface CartContainerProps {
 }
 
 export const CartContainer = styled.div<CartContainerProps>`
-  background-color: ${(props) => props.theme[CART_COLORS[props.color]]};
-  color: ${(props) => props.theme.white};
+  background-color: ${props => props.theme[CART_COLORS[props.color]]};
+  color: ${props => props.theme.white};
   padding: 0.5rem;
   border-radius: 6px;
 
@@ -25,8 +25,8 @@ export const CartContainer = styled.div<CartContainerProps>`
     amount &&
     css`
       &::before {
-        content: "${amount}";
-        background-color: ${(props) => props.theme["yellow-dark"]};
+        content: '${amount}';
+        background-color: ${props => props.theme['yellow-dark']};
         width: 1.25rem;
         height: 1.25rem;
         border-radius: 100%;
