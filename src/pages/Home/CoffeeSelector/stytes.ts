@@ -54,11 +54,13 @@ export const CoffeeDetails = styled.div`
 
   > div:first-child {
     font-size: 0.875rem;
+    color: ${props => props.theme['base-text']};
 
     span {
       font-family: 'Baloo 2', sans-serif;
       font-weight: 800;
       font-size: 1.5rem;
+      margin-left: 0.3rem;
     }
   }
 

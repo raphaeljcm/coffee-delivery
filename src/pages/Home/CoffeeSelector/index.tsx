@@ -115,7 +115,10 @@ export function CoffeeSelector() {
 
           <CoffeeDetails>
             <div>
-              R$ <span>{coffee.value}</span>
+              R$
+              <span>
+                {new Intl.NumberFormat('pt-BR').format(coffee.value)}0
+              </span>
             </div>
             <div>
               <div>
