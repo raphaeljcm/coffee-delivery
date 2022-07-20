@@ -1,5 +1,5 @@
-import { Minus, Plus } from 'phosphor-react';
 import { Cart } from '../../../components/Cart';
+import { ProductCounter } from '../../../components/ProductCounter';
 import { CoffeeContainer, CoffeeDetails } from './stytes';
 
 const coffees = [
@@ -121,15 +121,7 @@ export function CoffeeSelector() {
               </span>
             </div>
             <div>
-              <div>
-                <button type="button">
-                  <Minus size={14} weight="bold" color="#8047F8" />
-                </button>
-                <input type="text" readOnly value={1} />
-                <button type="button">
-                  <Plus size={14} weight="bold" color="#8047F8" />
-                </button>
-              </div>
+              <ProductCounter />
               <div>
                 <Cart
                   color="#F3F2F2"

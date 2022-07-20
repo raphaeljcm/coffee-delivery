@@ -65,7 +65,15 @@ export function Checkout() {
       </section>
       <section>
         <h2>Cafés selecionados</h2>
-        <div />
+        <div>
+          <div>
+            <img src="" alt="" />
+            <div>
+              <h3>Expresso Tradicional</h3>
+            </div>
+          </div>
+          <div />
+        </div>
       </section>
     </Form>
   );
