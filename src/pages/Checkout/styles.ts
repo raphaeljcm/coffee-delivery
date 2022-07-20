@@ -47,6 +47,7 @@ export const FormContainer = styled.div`
     display: flex;
     column-gap: 1rem;
     row-gap: 0.75rem;
+    flex-wrap: wrap;
   }
 `;
 
@@ -57,6 +58,7 @@ export const Input = styled.input`
   border-radius: 4px;
   color: ${props => props.theme['base-text']};
   font-size: 0.875rem;
+  flex: 1;
 
   // HIDE ARROWS FROM INPUT NUMBER
   /* Chrome, Safari, Edge, Opera */
@@ -80,6 +82,15 @@ export const Input = styled.input`
   &:nth-child(5) {
     max-width: 12.5rem;
   }
+
+  &:nth-child(2) {
+    min-width: 36rem;
+  }
+
+  &:nth-child(4) {
+    min-width: 21.75rem;
+  }
+
   &:last-child {
     max-width: 3.75rem;
   }

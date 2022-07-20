@@ -4,7 +4,9 @@ import {
   CurrencyDollar,
   MapPinLine,
   Money,
+  Trash,
 } from 'phosphor-react';
+import { ProductCounter } from '../../components/ProductCounter';
 import { Form, FormContainer, Input } from './styles';
 
 export function Checkout() {
@@ -63,6 +65,7 @@ export function Checkout() {
           </FormContainer>
         </div>
       </section>
+
       <section>
         <h2>Cafés selecionados</h2>
         <div>
@@ -70,7 +73,15 @@ export function Checkout() {
             <img src="" alt="" />
             <div>
               <h3>Expresso Tradicional</h3>
+              <div>
+                R$
+                <span>9,90</span>
+              </div>
             </div>
+            <ProductCounter />
+            <button type="button">
+              <Trash /> Remover
+            </button>
           </div>
           <div />
         </div>
