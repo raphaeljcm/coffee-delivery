@@ -7,7 +7,28 @@ import {
   Trash,
 } from 'phosphor-react';
 import { ProductCounter } from '../../components/ProductCounter';
-import { Form, FormContainer, Input } from './styles';
+import {
+  ConfirmOrderContainer,
+  Form,
+  FormContainer,
+  Input,
+  ProductInCart,
+} from './styles';
+
+const productInCart = [
+  {
+    name: 'Expresso Tradicional',
+    value: 9.9,
+    qtd: 1,
+    image: '/coffees/expresso.svg',
+  },
+  {
+    name: 'Latte',
+    value: 9.9,
+    qtd: 2,
+    image: '/coffees/latte.svg',
+  },
+];
 
 export function Checkout() {
   return (
@@ -25,18 +46,54 @@ export function Checkout() {
             </div>
 
             <div>
-              <Input type="number" name="cep" required placeholder="CEP" />
-              <Input type="text" name="street" required placeholder="Rua" />
+              <Input
+                type="number"
+                name="cep"
+                id="cep"
+                required
+                placeholder="CEP"
+              />
+              <Input
+                type="text"
+                name="street"
+                id="street"
+                required
+                placeholder="Rua"
+              />
               <Input
                 type="number"
                 name="number"
+                id="number"
                 required
                 placeholder="Número"
               />
-              <Input type="text" name="complement" placeholder="Complemento" />
-              <Input type="text" name="city" required placeholder="Bairro" />
-              <Input type="text" name="state" required placeholder="Cidade" />
-              <Input type="text" name="acronym" required placeholder="UF" />
+              <Input
+                type="text"
+                name="complement"
+                placeholder="Complemento"
+                id="complement"
+              />
+              <Input
+                type="text"
+                name="district"
+                id="district"
+                required
+                placeholder="Bairro"
+              />
+              <Input
+                type="text"
+                name="city"
+                id="city"
+                required
+                placeholder="Cidade"
+              />
+              <Input
+                type="text"
+                name="acronym"
+                id="acronym"
+                required
+                placeholder="UF"
+              />
             </div>
           </FormContainer>
           <FormContainer>
@@ -68,23 +125,29 @@ export function Checkout() {
 
       <section>
         <h2>Cafés selecionados</h2>
-        <div>
-          <div>
-            <img src="" alt="" />
-            <div>
-              <h3>Expresso Tradicional</h3>
+        <ConfirmOrderContainer>
+          {productInCart.map(prod => (
+            <ProductInCart key={prod.name}>
+              <img src={prod.image} alt={prod.name} />
+              <div>
+                <h3>{prod.name}</h3>
+                <div>
+                  <ProductCounter />
+                  <button type="button">
+                    <Trash size={16} color="#8047F8" /> Remover
+                  </button>
+                </div>
+              </div>
               <div>
                 R$
-                <span>9,90</span>
+                <span>
+                  {new Intl.NumberFormat('pt-BR').format(prod.value * prod.qtd)}
+                  0
+                </span>
               </div>
-            </div>
-            <ProductCounter />
-            <button type="button">
-              <Trash /> Remover
-            </button>
-          </div>
-          <div />
-        </div>
+            </ProductInCart>
+          ))}
+        </ConfirmOrderContainer>
       </section>
     </Form>
   );

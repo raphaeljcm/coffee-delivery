@@ -1,7 +1,13 @@
 import styled from 'styled-components';
+import { pxToRem } from '../../styles/functions/func';
 
-export const ProductCounterContainer = styled.div`
+interface ProductCounterContainerProps {
+  height?: 'small' | 'medium';
+}
+
+export const ProductCounterContainer = styled.div<ProductCounterContainerProps>`
   position: relative;
+  max-width: ${pxToRem(72)};
 
   button {
     background-color: transparent;
@@ -28,5 +34,20 @@ export const ProductCounterContainer = styled.div`
 
   button:last-of-type {
     right: 0.5rem;
+  }
+
+  input {
+    width: 4.5rem;
+    padding: 0.5rem;
+    background-color: ${props => props.theme['base-button']};
+    border-radius: 6px;
+    border: none;
+    text-align: center;
+    line-height: 130%;
+    height: ${props => (props.height === 'small' ? '2rem' : '2.375rem')};
+
+    &:focus {
+      box-shadow: none;
+    }
   }
 `;

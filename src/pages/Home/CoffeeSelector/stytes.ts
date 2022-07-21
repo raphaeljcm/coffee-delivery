@@ -69,19 +69,4 @@ export const CoffeeDetails = styled.div`
     align-items: center;
     gap: 0.5rem;
   }
-
-  input {
-    width: 4.5rem;
-    padding: 0.5rem;
-    background-color: ${props => props.theme['base-button']};
-    border-radius: 6px;
-    border: none;
-    text-align: center;
-    line-height: 130%;
-    height: 2.375rem;
-
-    &:focus {
-      box-shadow: none;
-    }
-  }
 `;

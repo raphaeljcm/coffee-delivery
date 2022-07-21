@@ -3,7 +3,7 @@ import { ProductCounterContainer } from './style';
 
 export function ProductCounter() {
   return (
-    <ProductCounterContainer>
+    <ProductCounterContainer height="small">
       <button type="button">
         <Minus size={14} weight="bold" color="#8047F8" />
       </button>

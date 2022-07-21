@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { pxToRem } from '../../styles/functions/func';
 
 export const Form = styled.form`
   display: grid;
@@ -51,6 +52,68 @@ export const FormContainer = styled.div`
   }
 `;
 
+export const ConfirmOrderContainer = styled.div`
+  background-color: ${props => props.theme['base-card']};
+  border-radius: 6px;
+  padding: 2.5rem;
+`;
+
+export const ProductInCart = styled.div`
+  padding: ${pxToRem(24)};
+  border-bottom: 1px solid ${props => props.theme['base-button']};
+  display: grid;
+  grid-template-columns: 1fr max-content 1fr;
+
+  img {
+    width: ${pxToRem(64)};
+    height: ${pxToRem(64)};
+    margin-right: ${pxToRem(20)};
+  }
+
+  h3 {
+    color: ${props => props.theme['base-subtitle']};
+    font-weight: 400;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  > div:first-of-type {
+    > div {
+      display: flex;
+      gap: 0.5rem;
+
+      svg {
+        margin-right: 0.2rem;
+      }
+
+      > button {
+        display: flex;
+        align-items: center;
+        background-color: ${props => props.theme['base-button']};
+        color: ${props => props.theme['base-text']};
+        font-size: 0.75rem;
+        line-height: 160%;
+        text-transform: uppercase;
+        padding: 0.5rem;
+        border: 0;
+        border-radius: 6px;
+        height: 2rem;
+        cursor: pointer;
+
+        transition: background-color 400ms;
+
+        &:hover {
+          background-color: ${props => props.theme['base-hover']};
+        }
+      }
+    }
+  }
+
+  > div:last-child {
+    margin-left: auto;
+  }
+`;
+
 export const Input = styled.input`
   background-color: ${props => props.theme['base-input']};
   border: 1px solid ${props => props.theme['base-button']};
@@ -59,6 +122,8 @@ export const Input = styled.input`
   color: ${props => props.theme['base-text']};
   font-size: 0.875rem;
   flex: 1;
+
+  position: relative;
 
   // HIDE ARROWS FROM INPUT NUMBER
   /* Chrome, Safari, Edge, Opera */
@@ -77,17 +142,17 @@ export const Input = styled.input`
     color: ${props => props.theme['base-label']};
   }
 
-  &:nth-child(1),
-  &:nth-child(3),
-  &:nth-child(5) {
+  &#cep,
+  &#number,
+  &#district {
     max-width: 12.5rem;
   }
 
-  &:nth-child(2) {
+  &#street {
     min-width: 36rem;
   }
 
-  &:nth-child(4) {
+  &#complement {
     min-width: 21.75rem;
   }
 
