@@ -8,18 +8,18 @@ type Cart = {
   image: string;
 };
 
-interface CartContextData {
+interface OrderContextData {
   productsInCart: Cart[];
   addProductToCart: (newProducts: Cart) => void;
 }
 
-interface CartContextProviderProps {
+interface OrderContextProviderProps {
   children: ReactNode;
 }
 
-export const CartContext = createContext({} as CartContextData);
+export const CartContext = createContext({} as OrderContextData);
 
-export function CartContextProvider({ children }: CartContextProviderProps) {
+export function OrderContextProvider({ children }: OrderContextProviderProps) {
   const [productsInCart, setProductsInCart] = useState<Cart[]>([]);
 
   const addProductToCart = useCallback((newProducts: Cart) => {
