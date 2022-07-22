@@ -15,7 +15,7 @@ export const ProductCounterContainer = styled.div<ProductCounterContainerProps>`
     line-height: 0;
     position: absolute;
     z-index: 1;
-    top: 0.65rem;
+    top: 0.55rem;
 
     &:hover {
       > svg {

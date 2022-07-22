@@ -50,19 +50,101 @@ export const FormContainer = styled.div`
     row-gap: 0.75rem;
     flex-wrap: wrap;
   }
+
+  button {
+    background-color: ${props => props.theme['base-button']};
+    border: 0;
+    border-radius: 6px;
+    padding: 1rem;
+    min-width: ${pxToRem(200)};
+    color: ${props => props.theme['base-text']};
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 160%;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    transition: all 400ms;
+
+    &:hover {
+      background-color: ${props => props.theme['base-hover']};
+      color: ${props => props.theme['base-subtitle']};
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 2px ${props => props.theme.purple};
+      background-color: ${props => props.theme['purple-light']};
+    }
+  }
 `;
 
 export const ConfirmOrderContainer = styled.div`
   background-color: ${props => props.theme['base-card']};
-  border-radius: 6px;
+  border-radius: 6px ${pxToRem(44)};
   padding: 2.5rem;
+
+  > div:last-of-type {
+    display: flex;
+    justify-content: space-between;
+    margin-top: ${pxToRem(24)};
+
+    p {
+      font-weight: 400;
+      color: ${props => props.theme['base-text']};
+      font-size: 1rem;
+      line-height: 130%;
+    }
+
+    p + p {
+      margin-top: ${pxToRem(14)};
+    }
+
+    > div:last-child {
+      text-align: right;
+    }
+
+    div p:last-child {
+      font-weight: 700;
+      color: ${props => props.theme['base-subtitle']};
+      font-size: ${pxToRem(20)};
+    }
+  }
+
+  button[type='submit'] {
+    width: 100%;
+    padding: ${pxToRem(12)} ${pxToRem(8)};
+    background-color: ${props => props.theme.yellow};
+    border-radius: 6px;
+    color: ${props => props.theme.white};
+    font-weight: 700;
+    font-size: ${pxToRem(14)};
+    line-height: 160%;
+    text-transform: uppercase;
+    border: 0;
+    cursor: pointer;
+    margin-top: ${pxToRem(24)};
+
+    transition: background-color 400ms;
+
+    &:hover {
+      background-color: ${props => props.theme['yellow-dark']};
+    }
+  }
 `;
 
 export const ProductInCart = styled.div`
-  padding: ${pxToRem(24)};
   border-bottom: 1px solid ${props => props.theme['base-button']};
   display: grid;
   grid-template-columns: 1fr max-content 1fr;
+  padding-bottom: ${pxToRem(24)};
+
+  &:not(:first-child) {
+    padding-top: ${pxToRem(24)};
+  }
 
   img {
     width: ${pxToRem(64)};
@@ -81,10 +163,6 @@ export const ProductInCart = styled.div`
     > div {
       display: flex;
       gap: 0.5rem;
-
-      svg {
-        margin-right: 0.2rem;
-      }
 
       > button {
         display: flex;
@@ -105,12 +183,25 @@ export const ProductInCart = styled.div`
         &:hover {
           background-color: ${props => props.theme['base-hover']};
         }
+
+        svg {
+          margin-right: 0.2rem;
+        }
       }
     }
   }
 
   > div:last-child {
     margin-left: auto;
+
+    font-weight: 700;
+    font-size: 1rem;
+    color: ${props => props.theme['base-text']};
+    line-height: 130%;
+
+    span {
+      margin-left: 0.2rem;
+    }
   }
 `;
 

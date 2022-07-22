@@ -109,13 +109,13 @@ export function Checkout() {
             </div>
             <div>
               <button type="button">
-                <CreditCard /> Cartão de Crédito
+                <CreditCard size={16} color="#8047F8" /> Cartão de Crédito
               </button>
               <button type="button">
-                <Bank /> Cartão de Débito
+                <Bank size={16} color="#8047F8" /> Cartão de Débito
               </button>
               <button type="button">
-                <Money />
+                <Money size={16} color="#8047F8" />
                 Dinheiro
               </button>
             </div>
@@ -147,6 +147,19 @@ export function Checkout() {
               </div>
             </ProductInCart>
           ))}
+          <div>
+            <div>
+              <p>Total de itens</p>
+              <p>Entrega</p>
+              <p>Total</p>
+            </div>
+            <div>
+              <p>R$ 29,70</p>
+              <p>R$ 3,50</p>
+              <p>R$ 33,20</p>
+            </div>
+          </div>
+          <button type="submit">Confirmar pedido</button>
         </ConfirmOrderContainer>
       </section>
     </Form>
