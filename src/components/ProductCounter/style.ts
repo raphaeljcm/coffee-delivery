@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { pxToRem } from '../../styles/functions/func';
 
 interface ProductCounterContainerProps {
-  height?: 'small' | 'medium';
+  height: 'small' | 'medium';
 }
 
 export const ProductCounterContainer = styled.div<ProductCounterContainerProps>`
@@ -15,7 +15,7 @@ export const ProductCounterContainer = styled.div<ProductCounterContainerProps>`
     line-height: 0;
     position: absolute;
     z-index: 1;
-    top: 0.55rem;
+    top: ${props => (props.height === 'small' ? '0.55rem' : '0.75rem')};
 
     &:hover {
       > svg {

@@ -132,7 +132,7 @@ export function Checkout() {
               <div>
                 <h3>{prod.name}</h3>
                 <div>
-                  <ProductCounter />
+                  <ProductCounter height="small" />
                   <button type="button">
                     <Trash size={16} color="#8047F8" /> Remover
                   </button>

@@ -1,9 +1,13 @@
 import { Minus, Plus } from 'phosphor-react';
 import { ProductCounterContainer } from './style';
 
-export function ProductCounter() {
+interface ProductCounterProps {
+  height: 'small' | 'medium';
+}
+
+export function ProductCounter({ height }: ProductCounterProps) {
   return (
-    <ProductCounterContainer height="small">
+    <ProductCounterContainer height={height}>
       <button type="button">
         <Minus size={14} weight="bold" color="#8047F8" />
       </button>

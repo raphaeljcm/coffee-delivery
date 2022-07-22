@@ -121,7 +121,7 @@ export function CoffeeSelector() {
               </span>
             </div>
             <div>
-              <ProductCounter />
+              <ProductCounter height="medium" />
               <div>
                 <Cart
                   color="#F3F2F2"
