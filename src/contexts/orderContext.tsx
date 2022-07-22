@@ -1,4 +1,10 @@
-import { createContext, ReactNode, useCallback, useState } from 'react';
+import {
+  createContext,
+  ReactNode,
+  useCallback,
+  useContext,
+  useState,
+} from 'react';
 
 type Cart = {
   id: number;
@@ -17,7 +23,7 @@ interface OrderContextProviderProps {
   children: ReactNode;
 }
 
-export const CartContext = createContext({} as OrderContextData);
+const OrderContext = createContext({} as OrderContextData);
 
 export function OrderContextProvider({ children }: OrderContextProviderProps) {
   const [productsInCart, setProductsInCart] = useState<Cart[]>([]);
@@ -27,8 +33,10 @@ export function OrderContextProvider({ children }: OrderContextProviderProps) {
   }, []);
 
   return (
-    <CartContext.Provider value={{ productsInCart, addProductToCart }}>
+    <OrderContext.Provider value={{ productsInCart, addProductToCart }}>
       {children}
-    </CartContext.Provider>
+    </OrderContext.Provider>
   );
 }
+
+export const useOrder = () => useContext(OrderContext);
