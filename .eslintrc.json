@@ -37,6 +37,7 @@
     "react/react-in-jsx-scope": "off",
     "react/jsx-no-bind": "off",
     "react/prop-types": "off",
+    "react/jsx-no-constructed-context-values": "off",
     "jsx-a11y/anchor-is-valid": [
       "error",
       {
