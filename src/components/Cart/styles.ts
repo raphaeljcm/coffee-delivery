@@ -16,10 +16,13 @@ export const CartContainer = styled.div<CartContainerProps>`
   color: ${props => props.theme.white};
   padding: 0.5rem;
   border-radius: 6px;
+  cursor: pointer;
 
   display: flex;
   align-items: center;
   position: relative;
+
+  transition: background-color 300ms;
 
   ${({ amount }) =>
     amount &&
@@ -38,6 +41,14 @@ export const CartContainer = styled.div<CartContainerProps>`
         align-items: center;
         justify-content: center;
         font-size: 0.9rem;
+      }
+    `}
+
+  ${({ color }) =>
+    color === 'purpleDark' &&
+    css`
+      &:hover {
+        background-color: ${props => props.theme.purple};
       }
     `}
 `;
