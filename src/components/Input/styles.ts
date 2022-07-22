@@ -76,6 +76,7 @@ export const InputContainer = styled.div`
       font-weight: 400;
       line-height: 130%;
       color: ${props => props.theme['base-label']};
+      font-style: italic;
     }
   }
 `;
