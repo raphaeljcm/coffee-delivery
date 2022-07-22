@@ -6,12 +6,13 @@ import {
   Money,
   Trash,
 } from 'phosphor-react';
+import { OrderAddressGroup } from '../../components/Input';
 import { ProductCounter } from '../../components/ProductCounter';
 import {
   ConfirmOrderContainer,
   Form,
   FormContainer,
-  Input,
+  PaymentMethodContainer,
   ProductInCart,
 } from './styles';
 
@@ -45,56 +46,7 @@ export function Checkout() {
               </div>
             </div>
 
-            <div>
-              <Input
-                type="number"
-                name="cep"
-                id="cep"
-                required
-                placeholder="CEP"
-              />
-              <Input
-                type="text"
-                name="street"
-                id="street"
-                required
-                placeholder="Rua"
-              />
-              <Input
-                type="number"
-                name="number"
-                id="number"
-                required
-                placeholder="Número"
-              />
-              <Input
-                type="text"
-                name="complement"
-                placeholder="Complemento"
-                id="complement"
-              />
-              <Input
-                type="text"
-                name="district"
-                id="district"
-                required
-                placeholder="Bairro"
-              />
-              <Input
-                type="text"
-                name="city"
-                id="city"
-                required
-                placeholder="Cidade"
-              />
-              <Input
-                type="text"
-                name="acronym"
-                id="acronym"
-                required
-                placeholder="UF"
-              />
-            </div>
+            <OrderAddressGroup />
           </FormContainer>
           <FormContainer>
             <div>
@@ -107,7 +59,7 @@ export function Checkout() {
                 </p>
               </div>
             </div>
-            <div>
+            <PaymentMethodContainer>
               <button type="button">
                 <CreditCard size={16} color="#8047F8" /> Cartão de Crédito
               </button>
@@ -118,7 +70,7 @@ export function Checkout() {
                 <Money size={16} color="#8047F8" />
                 Dinheiro
               </button>
-            </div>
+            </PaymentMethodContainer>
           </FormContainer>
         </div>
       </section>

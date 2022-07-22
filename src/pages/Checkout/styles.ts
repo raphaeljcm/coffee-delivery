@@ -44,13 +44,6 @@ export const FormContainer = styled.div`
     }
   }
 
-  > div:last-child {
-    display: flex;
-    column-gap: 1rem;
-    row-gap: 0.75rem;
-    flex-wrap: wrap;
-  }
-
   button {
     background-color: ${props => props.theme['base-button']};
     border: 0;
@@ -80,6 +73,12 @@ export const FormContainer = styled.div`
       background-color: ${props => props.theme['purple-light']};
     }
   }
+`;
+
+export const PaymentMethodContainer = styled.div`
+  display: flex;
+  column-gap: 1rem;
+  flex-wrap: wrap;
 `;
 
 export const ConfirmOrderContainer = styled.div`
@@ -202,52 +201,5 @@ export const ProductInCart = styled.div`
     span {
       margin-left: 0.2rem;
     }
-  }
-`;
-
-export const Input = styled.input`
-  background-color: ${props => props.theme['base-input']};
-  border: 1px solid ${props => props.theme['base-button']};
-  padding: 0.75rem;
-  border-radius: 4px;
-  color: ${props => props.theme['base-text']};
-  font-size: 0.875rem;
-  flex: 1;
-
-  position: relative;
-
-  // HIDE ARROWS FROM INPUT NUMBER
-  /* Chrome, Safari, Edge, Opera */
-  &[type='number']::-webkit-outer-spin-button,
-  &[type='number']::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-
-  /* Firefox */
-  &[type='number'] {
-    -moz-appearance: textfield;
-  }
-
-  ::placeholder {
-    color: ${props => props.theme['base-label']};
-  }
-
-  &#cep,
-  &#number,
-  &#district {
-    max-width: 12.5rem;
-  }
-
-  &#street {
-    min-width: 36rem;
-  }
-
-  &#complement {
-    min-width: 21.75rem;
-  }
-
-  &:last-child {
-    max-width: 3.75rem;
   }
 `;
