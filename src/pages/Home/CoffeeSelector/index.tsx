@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import { ProductCounter } from '../../../components/ProductCounter';
 import api from '../../../services/api';
 import { CoffeeType } from '../../../types';
@@ -8,10 +9,14 @@ export function CoffeeSelector() {
   const [coffees, setCoffees] = useState<CoffeeType[]>([]);
 
   useEffect(() => {
-    (async function getCoffeesData() {
-      const response = await api.get('/coffees');
-      setCoffees(response.data);
-    })();
+    try {
+      (async function getCoffeesData() {
+        const response = await api.get('/coffees');
+        setCoffees(response.data);
+      })();
+    } catch (err) {
+      toast.error('An error occured, sorry');
+    }
   }, []);
 
   return (

@@ -5,6 +5,7 @@ import {
   useContext,
   useState,
 } from 'react';
+import { toast } from 'react-toastify';
 import { CartType } from '../types';
 
 interface OrderContextData {
@@ -25,19 +26,25 @@ export function OrderContextProvider({ children }: OrderContextProviderProps) {
 
   const addProductToOrder = useCallback(
     (newProduct: CartType) => {
-      const product = productsInCart.find(prod => prod.id === newProduct.id);
+      try {
+        const product = productsInCart.find(prod => prod.id === newProduct.id);
 
-      if (product) {
-        const products = productsInCart.map(prod => {
-          if (prod.id === newProduct.id) {
-            return { ...prod, amount: newProduct.amount };
-          }
-          return prod;
-        });
+        if (product) {
+          const products = productsInCart.map(prod => {
+            if (prod.id === newProduct.id) {
+              return { ...prod, amount: newProduct.amount };
+            }
+            return prod;
+          });
 
-        setProductsInCart(products);
-      } else {
-        setProductsInCart(prevProducts => [...prevProducts, newProduct]);
+          setProductsInCart(products);
+          toast.success('Produto adicionado com sucesso!');
+        } else {
+          setProductsInCart(prevProducts => [...prevProducts, newProduct]);
+          toast.success('Produto adicionado com sucesso!');
+        }
+      } catch (err) {
+        toast.error('Não foi possível adicionar o produto');
       }
     },
     [productsInCart]
@@ -60,9 +67,14 @@ export function OrderContextProvider({ children }: OrderContextProviderProps) {
 
   const removeProductFromCart = useCallback(
     (productId: number) => {
-      const products = productsInCart.filter(prod => prod.id !== productId);
+      try {
+        const products = productsInCart.filter(prod => prod.id !== productId);
 
-      setProductsInCart(products);
+        setProductsInCart(products);
+        toast.success('Produto removido com sucesso');
+      } catch (err) {
+        toast.error('Não foi possível remover o produto');
+      }
     },
     [productsInCart]
   );

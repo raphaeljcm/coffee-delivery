@@ -24,14 +24,14 @@ export function Checkout() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (productsInCart.length <= 1) {
+    if (productsInCart.length === 0) {
       navigate('/', { replace: true });
     }
   }, [navigate, productsInCart]);
 
   const total = productsInCart.reduce(
     (sumTotal, product) => {
-      sumTotal.orderTotal += product.price * product.price;
+      sumTotal.orderTotal += product.price * product.amount;
       return sumTotal;
     },
     {

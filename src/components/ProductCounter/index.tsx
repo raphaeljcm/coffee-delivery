@@ -1,5 +1,6 @@
 import { Minus, Plus } from 'phosphor-react';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 import { useOrder } from '../../contexts/OrderContext';
 import { CartType, CoffeeType } from '../../types';
 import { Cart } from '../Cart';
@@ -29,6 +30,7 @@ export function ProductCounter({
 
   function handleAddProducToCart() {
     if (productAmount === 0) {
+      toast.error('Tá querendo adicionar o que patrão?');
       return;
     }
     const product = {
@@ -51,7 +53,7 @@ export function ProductCounter({
               setProductAmount(prev => prev - 1);
             }
           }}
-          disabled={isCheckoutPage ? productAmount <= 1 : productAmount === 0}
+          disabled={productAmount === 0}
         >
           <Minus size={14} weight="bold" color="#8047F8" />
         </button>
