@@ -7,14 +7,24 @@ interface CartProps {
   variant?: string;
   weight?: IconWeight;
   color: string;
+  isCart?: boolean;
   containerColor: 'yellow' | 'purple' | 'purpleDark';
 }
 
-export function Cart({ variant, weight, color, containerColor }: CartProps) {
+export function Cart({
+  variant,
+  weight,
+  color,
+  containerColor,
+  isCart,
+}: CartProps) {
   const { productsInCart } = useOrder();
 
   return (
-    <CartContainer color={containerColor} amount={productsInCart.length}>
+    <CartContainer
+      color={containerColor}
+      amount={isCart ? productsInCart.length : 0}
+    >
       {variant === 'simple' ? (
         <ShoppingCartSimple size={22} />
       ) : (

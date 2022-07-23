@@ -10,7 +10,7 @@ type Cart = {
   id: number;
   name: string;
   price: number;
-  qtd: number;
+  amount: number;
   image: string;
 };
 

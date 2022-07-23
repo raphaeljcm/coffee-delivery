@@ -13,18 +13,22 @@ export const ProductCounterContainer = styled.div<ProductCounterContainerProps>`
     background-color: transparent;
     border: none;
     line-height: 0;
+    cursor: pointer;
     position: absolute;
     z-index: 1;
     top: ${props => (props.height === 'small' ? '0.55rem' : '0.75rem')};
 
     &:hover {
       > svg {
-        cursor: pointer;
         line {
           transition: stroke 700ms;
           stroke: ${props => props.theme['purple-dark']};
         }
       }
+    }
+
+    &:disabled {
+      cursor: not-allowed;
     }
   }
 

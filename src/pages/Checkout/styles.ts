@@ -43,6 +43,12 @@ export const FormContainer = styled.div`
       color: ${props => props.theme['base-text']};
     }
   }
+`;
+
+export const PaymentMethodContainer = styled.div`
+  display: flex;
+  column-gap: 1rem;
+  flex-wrap: wrap;
 
   button {
     background-color: ${props => props.theme['base-button']};
@@ -73,12 +79,6 @@ export const FormContainer = styled.div`
       background-color: ${props => props.theme['purple-light']};
     }
   }
-`;
-
-export const PaymentMethodContainer = styled.div`
-  display: flex;
-  column-gap: 1rem;
-  flex-wrap: wrap;
 `;
 
 export const ConfirmOrderContainer = styled.div`

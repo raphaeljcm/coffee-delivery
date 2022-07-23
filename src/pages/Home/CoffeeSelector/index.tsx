@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ProductCounter } from '../../../components/ProductCounter';
-import { CoffeeContainer, CoffeeDetails } from './stytes';
 import api from '../../../services/api';
+import { CoffeeContainer, CoffeeDetails } from './stytes';
 
 type Coffee = {
   id: number;
@@ -41,7 +41,7 @@ export function CoffeeSelector() {
               </span>
             </div>
             <div>
-              <ProductCounter height="medium" />
+              <ProductCounter height="medium" coffee={coffee} />
             </div>
           </CoffeeDetails>
         </CoffeeContainer>
