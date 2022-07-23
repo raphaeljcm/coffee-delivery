@@ -3,6 +3,10 @@ import { useState } from 'react';
 import { Cart } from '../Cart';
 import { ProductCounterContainer } from './style';
 
+type Coffee = {
+  name: string;
+};
+
 interface ProductCounterProps {
   height: 'small' | 'medium';
 }

@@ -1,108 +1,27 @@
+import { useEffect, useState } from 'react';
 import { ProductCounter } from '../../../components/ProductCounter';
 import { CoffeeContainer, CoffeeDetails } from './stytes';
+import api from '../../../services/api';
 
-const coffees = [
-  {
-    name: 'Expresso Tradicional',
-    types: ['tradicional'],
-    content: 'O tradicional café feito com água quente e grãos moídos',
-    image: '/coffees/expresso.svg',
-    value: 9.9,
-  },
-  {
-    name: 'Expresso Americano',
-    types: ['tradicional'],
-    content: 'Expresso diluído, menos intenso que o tradicional',
-    value: 9.9,
-    image: '/coffees/americano.svg',
-  },
-  {
-    name: 'Expresso Cremoso',
-    types: ['tradicional'],
-    content: 'Café expresso tradicional com espuma cremosa',
-    value: 9.9,
-    image: '/coffees/expresso-cremoso.svg',
-  },
-  {
-    name: 'Expresso Gelado',
-    types: ['tradicional', 'gelado'],
-    content: 'Bebida preparada com café expresso e cubos de gelo',
-    value: 9.9,
-    image: '/coffees/cafe-gelado.svg',
-  },
-  {
-    name: 'Café com Leite',
-    types: ['tradicional', 'com leite'],
-    content: 'Meio a meio de expresso tradicional com leite vaporizado',
-    value: 9.9,
-    image: '/coffees/cafe-com-leite.svg',
-  },
-  {
-    name: 'Latte',
-    types: ['tradicional', 'com leite'],
-    content: 'Uma dose de café expresso com o dobro de leite e espuma cremosa',
-    value: 9.9,
-    image: '/coffees/latte.svg',
-  },
-  {
-    name: 'Capuccino',
-    types: ['tradicional', 'com leite'],
-    content: 'Bebida com canela feita de doses iguais de café, leite e espuma',
-    value: 9.9,
-    image: '/coffees/capuccino.svg',
-  },
-  {
-    name: 'Macchiato',
-    types: ['tradicional', 'com leite'],
-    content: 'Café expresso misturado com um pouco de leite quente e espuma',
-    value: 9.9,
-    image: '/coffees/macchiato.svg',
-  },
-  {
-    name: 'Mocaccino',
-    types: ['tradicional', 'com leite'],
-    content: 'Café expresso com calda de chocolate, pouco leite e espuma',
-    value: 9.9,
-    image: '/coffees/mochaccino.svg',
-  },
-  {
-    name: 'Chocolate Quente',
-    types: ['tradicional', 'com leite'],
-    content: 'Bebida feita com chocolate dissolvido no leite quente e café',
-    value: 9.9,
-    image: '/coffees/chocolate-quente.svg',
-  },
-  {
-    name: 'Cubano',
-    types: ['especial', 'alcoólico', 'gelado'],
-    content: 'Drink gelado de café expresso com rum, creme de leite e hortelã',
-    value: 9.9,
-    image: '/coffees/cubano.svg',
-  },
-  {
-    name: 'Havaiano',
-    types: ['especial'],
-    content: 'Bebida adocicada preparada com café e leite de coco',
-    value: 9.9,
-    image: '/coffees/havaiano.svg',
-  },
-  {
-    name: 'Árabe',
-    types: ['especial'],
-    content: 'Bebida preparada com grãos de café árabe e especiarias',
-    value: 9.9,
-    image: '/coffees/arabe.svg',
-  },
-  {
-    name: 'Irlandês',
-    types: ['especial', 'alcoólico'],
-    content: 'Bebida a base de café, uísque irlandês, açúcar e chantilly',
-    value: 9.9,
-    image: '/coffees/irlandes.svg',
-  },
-];
+type Coffee = {
+  id: number;
+  name: string;
+  types: string[];
+  content: string;
+  image: string;
+  price: number;
+};
 
 export function CoffeeSelector() {
+  const [coffees, setCoffees] = useState<Coffee[]>([]);
+
+  useEffect(() => {
+    (async function getCoffeesData() {
+      const response = await api.get('/coffees');
+      setCoffees(response.data);
+    })();
+  }, []);
+
   return (
     <>
       {coffees.map(coffee => (
@@ -116,7 +35,9 @@ export function CoffeeSelector() {
             <div>
               R$
               <span>
-                {new Intl.NumberFormat('pt-BR').format(coffee.value)}0
+                {new Intl.NumberFormat('pt-BR', {
+                  minimumFractionDigits: 2,
+                }).format(coffee.price)}
               </span>
             </div>
             <div>
