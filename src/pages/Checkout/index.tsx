@@ -6,6 +6,8 @@ import {
   Money,
   Trash,
 } from 'phosphor-react';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { OrderAddressGroup } from '../../components/Input';
 import { ProductCounter } from '../../components/ProductCounter';
 import { useOrder } from '../../contexts/OrderContext';
@@ -19,6 +21,13 @@ import {
 
 export function Checkout() {
   const { productsInCart, removeProductFromCart } = useOrder();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (productsInCart.length <= 1) {
+      navigate('/', { replace: true });
+    }
+  }, [navigate, productsInCart]);
 
   const total = productsInCart.reduce(
     (sumTotal, product) => {
