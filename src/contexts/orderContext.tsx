@@ -16,7 +16,7 @@ type Cart = {
 
 interface OrderContextData {
   productsInCart: Cart[];
-  addProductToCart: (newProducts: Cart) => void;
+  addProductToOrder: (newProducts: Cart) => void;
 }
 
 interface OrderContextProviderProps {
@@ -28,12 +28,12 @@ const OrderContext = createContext({} as OrderContextData);
 export function OrderContextProvider({ children }: OrderContextProviderProps) {
   const [productsInCart, setProductsInCart] = useState<Cart[]>([]);
 
-  const addProductToCart = useCallback((newProducts: Cart) => {
+  const addProductToOrder = useCallback((newProducts: Cart) => {
     setProductsInCart(prevProducts => [...prevProducts, newProducts]);
   }, []);
 
   return (
-    <OrderContext.Provider value={{ productsInCart, addProductToCart }}>
+    <OrderContext.Provider value={{ productsInCart, addProductToOrder }}>
       {children}
     </OrderContext.Provider>
   );

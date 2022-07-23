@@ -68,5 +68,9 @@ export const CoffeeDetails = styled.div`
     display: flex;
     align-items: center;
     gap: 0.5rem;
+
+    button {
+      border: none;
+    }
   }
 `;

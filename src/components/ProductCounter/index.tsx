@@ -1,5 +1,6 @@
 import { Minus, Plus } from 'phosphor-react';
 import { useState } from 'react';
+import { Cart } from '../Cart';
 import { ProductCounterContainer } from './style';
 
 interface ProductCounterProps {
@@ -16,14 +17,22 @@ export function ProductCounter({ height }: ProductCounterProps) {
   }
 
   return (
-    <ProductCounterContainer height={height}>
-      <button type="button" onClick={decreaseProductAmount}>
-        <Minus size={14} weight="bold" color="#8047F8" />
+    <>
+      <ProductCounterContainer height={height}>
+        <button type="button" onClick={decreaseProductAmount}>
+          <Minus size={14} weight="bold" color="#8047F8" />
+        </button>
+        <input type="text" readOnly value={productAmount} />
+        <button
+          type="button"
+          onClick={() => setProductAmount(prev => prev + 1)}
+        >
+          <Plus size={14} weight="bold" color="#8047F8" />
+        </button>
+      </ProductCounterContainer>
+      <button type="button">
+        <Cart color="#F3F2F2" weight="fill" containerColor="purpleDark" />
       </button>
-      <input type="text" readOnly value={productAmount} />
-      <button type="button" onClick={() => setProductAmount(prev => prev + 1)}>
-        <Plus size={14} weight="bold" color="#8047F8" />
-      </button>
-    </ProductCounterContainer>
+    </>
   );
 }

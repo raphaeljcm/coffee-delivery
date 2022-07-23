@@ -8,7 +8,7 @@ const CART_COLORS = {
 
 interface CartContainerProps {
   color: keyof typeof CART_COLORS;
-  amount?: number;
+  amount: number;
 }
 
 export const CartContainer = styled.div<CartContainerProps>`
@@ -25,7 +25,7 @@ export const CartContainer = styled.div<CartContainerProps>`
   transition: background-color 300ms;
 
   ${({ amount }) =>
-    amount &&
+    amount > 0 &&
     css`
       &::before {
         content: '${amount}';

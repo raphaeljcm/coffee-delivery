@@ -1,4 +1,3 @@
-import { Cart } from '../../../components/Cart';
 import { ProductCounter } from '../../../components/ProductCounter';
 import { CoffeeContainer, CoffeeDetails } from './stytes';
 
@@ -122,13 +121,6 @@ export function CoffeeSelector() {
             </div>
             <div>
               <ProductCounter height="medium" />
-              <div>
-                <Cart
-                  color="#F3F2F2"
-                  weight="fill"
-                  containerColor="purpleDark"
-                />
-              </div>
             </div>
           </CoffeeDetails>
         </CoffeeContainer>
