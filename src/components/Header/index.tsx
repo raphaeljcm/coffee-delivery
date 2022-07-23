@@ -1,5 +1,6 @@
 import { MapPin } from 'phosphor-react';
 import { NavLink } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import logo from '../../assets/logo.svg';
 import { useOrder } from '../../contexts/OrderContext';
 import { Cart } from '../Cart';
@@ -7,6 +8,7 @@ import { HeaderContainer, Map } from './styles';
 
 export function Header() {
   const { productsInCart } = useOrder();
+  const isProducts = productsInCart.length > 0;
 
   return (
     <HeaderContainer className="container">
@@ -19,8 +21,13 @@ export function Header() {
           Porto Alegre, RS
         </Map>
         <NavLink
-          to={productsInCart.length > 0 ? '/checkout' : '/'}
+          to={isProducts ? '/checkout' : '/'}
           title="Checkout"
+          onClick={() => {
+            if (!isProducts) {
+              toast.error('Adicione algum produto no carrinho!');
+            }
+          }}
         >
           <Cart color="#C47F17" weight="fill" containerColor="yellow" isCart />
         </NavLink>
