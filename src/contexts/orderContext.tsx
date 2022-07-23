@@ -5,18 +5,13 @@ import {
   useContext,
   useState,
 } from 'react';
-
-type Cart = {
-  id: number;
-  name: string;
-  price: number;
-  amount: number;
-  image: string;
-};
+import { CartType } from '../types';
 
 interface OrderContextData {
-  productsInCart: Cart[];
-  addProductToOrder: (newProducts: Cart) => void;
+  productsInCart: CartType[];
+  addProductToOrder: (newProducts: CartType) => void;
+  updateProductAmount: (productId: number, amount: number) => void;
+  removeProductFromCart: (productId: number) => void;
 }
 
 interface OrderContextProviderProps {
@@ -26,14 +21,61 @@ interface OrderContextProviderProps {
 const OrderContext = createContext({} as OrderContextData);
 
 export function OrderContextProvider({ children }: OrderContextProviderProps) {
-  const [productsInCart, setProductsInCart] = useState<Cart[]>([]);
+  const [productsInCart, setProductsInCart] = useState<CartType[]>([]);
 
-  const addProductToOrder = useCallback((newProducts: Cart) => {
-    setProductsInCart(prevProducts => [...prevProducts, newProducts]);
-  }, []);
+  const addProductToOrder = useCallback(
+    (newProduct: CartType) => {
+      const product = productsInCart.find(prod => prod.id === newProduct.id);
+
+      if (product) {
+        const products = productsInCart.map(prod => {
+          if (prod.id === newProduct.id) {
+            return { ...prod, amount: newProduct.amount };
+          }
+          return prod;
+        });
+
+        setProductsInCart(products);
+      } else {
+        setProductsInCart(prevProducts => [...prevProducts, newProduct]);
+      }
+    },
+    [productsInCart]
+  );
+
+  const updateProductAmount = useCallback(
+    (productId: number, amount: number) => {
+      const newProducts = productsInCart.map(prod => {
+        if (prod.id === productId) {
+          return { ...prod, amount };
+        }
+
+        return prod;
+      });
+
+      setProductsInCart(newProducts);
+    },
+    [productsInCart]
+  );
+
+  const removeProductFromCart = useCallback(
+    (productId: number) => {
+      const products = productsInCart.filter(prod => prod.id !== productId);
+
+      setProductsInCart(products);
+    },
+    [productsInCart]
+  );
 
   return (
-    <OrderContext.Provider value={{ productsInCart, addProductToOrder }}>
+    <OrderContext.Provider
+      value={{
+        productsInCart,
+        addProductToOrder,
+        updateProductAmount,
+        removeProductFromCart,
+      }}
+    >
       {children}
     </OrderContext.Provider>
   );

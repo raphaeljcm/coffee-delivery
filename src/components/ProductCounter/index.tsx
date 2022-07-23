@@ -1,19 +1,13 @@
 import { Minus, Plus } from 'phosphor-react';
 import { useState } from 'react';
 import { useOrder } from '../../contexts/OrderContext';
+import { CartType, CoffeeType } from '../../types';
 import { Cart } from '../Cart';
 import { ProductCounterContainer } from './style';
 
-type Coffee = {
-  id: number;
-  name: string;
-  image: string;
-  price: number;
-};
-
 interface ProductCounterProps {
   height: 'small' | 'medium';
-  coffee: Coffee;
+  coffee: CartType | CoffeeType;
   isCheckoutPage?: boolean;
 }
 
@@ -22,16 +16,18 @@ export function ProductCounter({
   coffee,
   isCheckoutPage,
 }: ProductCounterProps) {
-  const [productAmount, setProductAmount] = useState(0);
-  const { addProductToOrder } = useOrder();
+  const { productsInCart, addProductToOrder, updateProductAmount } = useOrder();
+  const [productAmount, setProductAmount] = useState(() => {
+    const isProduct = productsInCart.find(prod => prod.id === coffee.id);
 
-  function decreaseProductAmount() {
-    if (productAmount !== 0) {
-      setProductAmount(prev => prev - 1);
+    if (isProduct) {
+      return isProduct.amount;
     }
-  }
 
-  function addToCart() {
+    return 0;
+  });
+
+  function handleAddProducToCart() {
     if (productAmount === 0) {
       return;
     }
@@ -47,21 +43,35 @@ export function ProductCounter({
       <ProductCounterContainer height={height}>
         <button
           type="button"
-          onClick={decreaseProductAmount}
-          disabled={productAmount === 0}
+          onClick={() => {
+            if (isCheckoutPage) {
+              setProductAmount(prev => prev - 1);
+              updateProductAmount(coffee.id, productAmount - 1);
+            } else {
+              setProductAmount(prev => prev - 1);
+            }
+          }}
+          disabled={isCheckoutPage ? productAmount <= 1 : productAmount === 0}
         >
           <Minus size={14} weight="bold" color="#8047F8" />
         </button>
         <input type="text" readOnly value={productAmount} />
         <button
           type="button"
-          onClick={() => setProductAmount(prev => prev + 1)}
+          onClick={() => {
+            if (isCheckoutPage) {
+              setProductAmount(prev => prev + 1);
+              updateProductAmount(coffee.id, productAmount + 1);
+            } else {
+              setProductAmount(prev => prev + 1);
+            }
+          }}
         >
           <Plus size={14} weight="bold" color="#8047F8" />
         </button>
       </ProductCounterContainer>
       {!isCheckoutPage && (
-        <button type="button" onClick={addToCart}>
+        <button type="button" onClick={handleAddProducToCart}>
           <Cart color="#F3F2F2" weight="fill" containerColor="purpleDark" />
         </button>
       )}

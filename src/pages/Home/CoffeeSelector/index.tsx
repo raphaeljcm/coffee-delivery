@@ -1,19 +1,11 @@
 import { useEffect, useState } from 'react';
 import { ProductCounter } from '../../../components/ProductCounter';
 import api from '../../../services/api';
+import { CoffeeType } from '../../../types';
 import { CoffeeContainer, CoffeeDetails } from './stytes';
 
-type Coffee = {
-  id: number;
-  name: string;
-  types: string[];
-  content: string;
-  image: string;
-  price: number;
-};
-
 export function CoffeeSelector() {
-  const [coffees, setCoffees] = useState<Coffee[]>([]);
+  const [coffees, setCoffees] = useState<CoffeeType[]>([]);
 
   useEffect(() => {
     (async function getCoffeesData() {
