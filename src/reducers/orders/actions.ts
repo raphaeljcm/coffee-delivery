@@ -6,30 +6,13 @@ export enum ActionTypes {
   REMOVE_PRODUCT_FROM_CART = 'REMOVE_PRODUCT_FROM_CART',
 }
 
-export function addProductToOrderAction(newProduct: CartType) {
-  return {
-    type: ActionTypes.ADD_PRODUCT_TO_CART,
-    payload: {
-      newProduct,
-    },
-  };
-}
-
-export function updateProductAmountAction(productId: number, amount: number) {
-  return {
-    type: ActionTypes.UPDATE_PRODUCT_AMOUNT,
-    payload: {
-      productId,
-      amount,
-    },
-  };
-}
-
-export function removeProductFromCartAction(productId: number) {
-  return {
-    type: ActionTypes.REMOVE_PRODUCT_FROM_CART,
-    payload: {
-      productId,
-    },
-  };
-}
+export type Action =
+  | { type: ActionTypes.ADD_PRODUCT_TO_CART; payload: { newProduct: CartType } }
+  | {
+      type: ActionTypes.UPDATE_PRODUCT_AMOUNT;
+      payload: { productId: number; amount: number };
+    }
+  | {
+      type: ActionTypes.REMOVE_PRODUCT_FROM_CART;
+      payload: { productId: number };
+    };

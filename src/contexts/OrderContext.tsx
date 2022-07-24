@@ -6,11 +6,7 @@ import {
   useReducer,
 } from 'react';
 import { toast } from 'react-toastify';
-import {
-  addProductToOrderAction,
-  removeProductFromCartAction,
-  updateProductAmountAction,
-} from '../reducers/orders/actions';
+import { ActionTypes } from '../reducers/orders/actions';
 import { ordersReducer } from '../reducers/orders/reducer';
 import { CartType } from '../types';
 
@@ -36,7 +32,10 @@ export function OrderContextProvider({ children }: OrderContextProviderProps) {
 
   const addProductToOrder = useCallback((newProduct: CartType) => {
     try {
-      dispatch(addProductToOrderAction(newProduct));
+      dispatch({
+        type: ActionTypes.ADD_PRODUCT_TO_CART,
+        payload: { newProduct },
+      });
       toast.success('Produto adicionado com sucesso!');
     } catch (err) {
       toast.error('Não foi possível adicionar o produto');
@@ -45,14 +44,20 @@ export function OrderContextProvider({ children }: OrderContextProviderProps) {
 
   const updateProductAmount = useCallback(
     (productId: number, amount: number) => {
-      dispatch(updateProductAmountAction(productId, amount));
+      dispatch({
+        type: ActionTypes.UPDATE_PRODUCT_AMOUNT,
+        payload: { productId, amount },
+      });
     },
     []
   );
 
   const removeProductFromCart = useCallback((productId: number) => {
     try {
-      dispatch(removeProductFromCartAction(productId));
+      dispatch({
+        type: ActionTypes.REMOVE_PRODUCT_FROM_CART,
+        payload: { productId },
+      });
       toast.success('Produto removido com sucesso');
     } catch (err) {
       toast.error('Não foi possível remover o produto');
