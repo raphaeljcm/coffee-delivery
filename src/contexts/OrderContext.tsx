@@ -3,13 +3,19 @@ import {
   ReactNode,
   useCallback,
   useContext,
-  useState,
+  useReducer,
 } from 'react';
 import { toast } from 'react-toastify';
+import {
+  addProductToOrderAction,
+  removeProductFromCartAction,
+  updateProductAmountAction,
+} from '../reducers/orders/actions';
+import { ordersReducer } from '../reducers/orders/reducer';
 import { CartType } from '../types';
 
 interface OrderContextData {
-  productsInCart: CartType[];
+  order: CartType[];
   addProductToOrder: (newProducts: CartType) => void;
   updateProductAmount: (productId: number, amount: number) => void;
   removeProductFromCart: (productId: number) => void;
@@ -22,67 +28,41 @@ interface OrderContextProviderProps {
 const OrderContext = createContext({} as OrderContextData);
 
 export function OrderContextProvider({ children }: OrderContextProviderProps) {
-  const [productsInCart, setProductsInCart] = useState<CartType[]>([]);
+  const [productsInCartState, dispatch] = useReducer(ordersReducer, {
+    order: [],
+  });
 
-  const addProductToOrder = useCallback(
-    (newProduct: CartType) => {
-      try {
-        const product = productsInCart.find(prod => prod.id === newProduct.id);
+  const { order } = productsInCartState;
 
-        if (product) {
-          const products = productsInCart.map(prod => {
-            if (prod.id === newProduct.id) {
-              return { ...prod, amount: newProduct.amount };
-            }
-            return prod;
-          });
-
-          setProductsInCart(products);
-          toast.success('Produto adicionado com sucesso!');
-        } else {
-          setProductsInCart(prevProducts => [...prevProducts, newProduct]);
-          toast.success('Produto adicionado com sucesso!');
-        }
-      } catch (err) {
-        toast.error('Não foi possível adicionar o produto');
-      }
-    },
-    [productsInCart]
-  );
+  const addProductToOrder = useCallback((newProduct: CartType) => {
+    try {
+      dispatch(addProductToOrderAction(newProduct));
+      toast.success('Produto adicionado com sucesso!');
+    } catch (err) {
+      toast.error('Não foi possível adicionar o produto');
+    }
+  }, []);
 
   const updateProductAmount = useCallback(
     (productId: number, amount: number) => {
-      const newProducts = productsInCart.map(prod => {
-        if (prod.id === productId) {
-          return { ...prod, amount };
-        }
-
-        return prod;
-      });
-
-      setProductsInCart(newProducts);
+      dispatch(updateProductAmountAction(productId, amount));
     },
-    [productsInCart]
+    []
   );
 
-  const removeProductFromCart = useCallback(
-    (productId: number) => {
-      try {
-        const products = productsInCart.filter(prod => prod.id !== productId);
-
-        setProductsInCart(products);
-        toast.success('Produto removido com sucesso');
-      } catch (err) {
-        toast.error('Não foi possível remover o produto');
-      }
-    },
-    [productsInCart]
-  );
+  const removeProductFromCart = useCallback((productId: number) => {
+    try {
+      dispatch(removeProductFromCartAction(productId));
+      toast.success('Produto removido com sucesso');
+    } catch (err) {
+      toast.error('Não foi possível remover o produto');
+    }
+  }, []);
 
   return (
     <OrderContext.Provider
       value={{
-        productsInCart,
+        order,
         addProductToOrder,
         updateProductAmount,
         removeProductFromCart,

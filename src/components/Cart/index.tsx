@@ -18,13 +18,10 @@ export function Cart({
   containerColor,
   isCart,
 }: CartProps) {
-  const { productsInCart } = useOrder();
+  const { order } = useOrder();
 
   return (
-    <CartContainer
-      color={containerColor}
-      amount={isCart ? productsInCart.length : 0}
-    >
+    <CartContainer color={containerColor} amount={isCart ? order.length : 0}>
       {variant === 'simple' ? (
         <ShoppingCartSimple size={22} />
       ) : (

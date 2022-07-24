@@ -20,16 +20,16 @@ import {
 } from './styles';
 
 export function Checkout() {
-  const { productsInCart, removeProductFromCart } = useOrder();
+  const { order, removeProductFromCart } = useOrder();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (productsInCart.length === 0) {
+    if (order.length === 0) {
       navigate('/', { replace: true });
     }
-  }, [navigate, productsInCart]);
+  }, [navigate, order]);
 
-  const total = productsInCart.reduce(
+  const total = order.reduce(
     (sumTotal, product) => {
       sumTotal.orderTotal += product.price * product.amount;
       return sumTotal;
@@ -85,7 +85,7 @@ export function Checkout() {
       <section>
         <h2>Cafés selecionados</h2>
         <ConfirmOrderContainer>
-          {productsInCart.map(prod => (
+          {order.map(prod => (
             <ProductInCart key={prod.name}>
               <img src={prod.image} alt={prod.name} />
               <div>

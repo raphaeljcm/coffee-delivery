@@ -6,8 +6,8 @@ import { Cart } from '../Cart';
 import { HeaderContainer, Map } from './styles';
 
 export function Header() {
-  const { productsInCart } = useOrder();
-  const isProducts = productsInCart.length > 0;
+  const { order } = useOrder();
+  const isProducts = order.length > 0;
 
   return (
     <HeaderContainer className="container">

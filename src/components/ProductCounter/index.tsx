@@ -17,9 +17,9 @@ export function ProductCounter({
   coffee,
   isCheckoutPage,
 }: ProductCounterProps) {
-  const { productsInCart, addProductToOrder, updateProductAmount } = useOrder();
+  const { order, addProductToOrder, updateProductAmount } = useOrder();
   const [productAmount, setProductAmount] = useState(() => {
-    const isProduct = productsInCart.find(prod => prod.id === coffee.id);
+    const isProduct = order.find(prod => prod.id === coffee.id);
 
     if (isProduct) {
       return isProduct.amount;
