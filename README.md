@@ -9,6 +9,8 @@
 - React Router Dom
 - Phosphor Icons
 - Styled Components
+- JSON Server
+- Axios
 
 </br>
 
