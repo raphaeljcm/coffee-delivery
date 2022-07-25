@@ -13,9 +13,11 @@
     "phosphor-react": "^1.4.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.33.1",
     "react-router-dom": "^6.3.0",
     "react-toastify": "^9.0.7",
-    "styled-components": "^5.3.5"
+    "styled-components": "^5.3.5",
+    "zod": "^3.17.10"
   },
   "devDependencies": {
     "@types/react": "^18.0.15",
