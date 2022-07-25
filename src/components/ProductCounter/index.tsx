@@ -53,7 +53,7 @@ export function ProductCounter({
               setProductAmount(prev => prev - 1);
             }
           }}
-          disabled={productAmount === 0}
+          disabled={isCheckoutPage ? productAmount <= 1 : productAmount === 0}
         >
           <Minus size={14} weight="bold" color="#8047F8" />
         </button>
