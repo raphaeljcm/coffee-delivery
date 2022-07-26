@@ -3,7 +3,7 @@ import { pxToRem } from '../../styles/functions/func';
 
 export const InputContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr ${pxToRem(60)};
+  grid-template-columns: ${pxToRem(200)} 1fr ${pxToRem(60)};
   grid-auto-flow: dense;
   gap: 1rem 0.75rem;
 
@@ -20,6 +20,7 @@ export const InputContainer = styled.div`
 
     &#number {
       grid-row-start: 3;
+      width: ${pxToRem(200)};
     }
 
     &#complement {
@@ -29,6 +30,7 @@ export const InputContainer = styled.div`
 
     &#district {
       grid-row-start: 4;
+      width: ${pxToRem(200)};
     }
 
     &#city {

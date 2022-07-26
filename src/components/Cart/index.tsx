@@ -1,6 +1,6 @@
 import { ShoppingCart, ShoppingCartSimple } from 'phosphor-react';
 import { IconWeight } from 'phosphor-react/dist/lib';
-import { useOrder } from '../../contexts/OrderContext';
+import { useProduct } from '../../contexts/ProductContext';
 import { CartContainer } from './styles';
 
 interface CartProps {
@@ -18,7 +18,7 @@ export function Cart({
   containerColor,
   isCart,
 }: CartProps) {
-  const { order } = useOrder();
+  const { order } = useProduct();
 
   return (
     <CartContainer color={containerColor} amount={isCart ? order.length : 0}>

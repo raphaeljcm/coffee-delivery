@@ -1,12 +1,12 @@
 import { MapPin } from 'phosphor-react';
 import { NavLink } from 'react-router-dom';
 import logo from '../../assets/logo.svg';
-import { useOrder } from '../../contexts/OrderContext';
+import { useProduct } from '../../contexts/ProductContext';
 import { Cart } from '../Cart';
 import { HeaderContainer, Map } from './styles';
 
 export function Header() {
-  const { order } = useOrder();
+  const { order } = useProduct();
   const isProducts = order.length > 0;
 
   return (

@@ -74,7 +74,7 @@ export const PaymentMethodContainer = styled.div`
       color: ${props => props.theme['base-subtitle']};
     }
 
-    &:focus {
+    &.active {
       box-shadow: 0 0 0 2px ${props => props.theme.purple};
       background-color: ${props => props.theme['purple-light']};
     }

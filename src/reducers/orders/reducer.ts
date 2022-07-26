@@ -1,11 +1,14 @@
 import { CartType } from '../../types';
 import { Action, ActionTypes } from './actions';
 
-interface OrdersState {
+interface ProductsState {
   order: CartType[];
 }
 
-export function ordersReducer(state: OrdersState, action: Action): OrdersState {
+export function productsReducer(
+  state: ProductsState,
+  action: Action
+): ProductsState {
   switch (action.type) {
     case ActionTypes.ADD_PRODUCT_TO_CART: {
       const product = state.order.find(

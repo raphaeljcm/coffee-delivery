@@ -7,24 +7,26 @@ import {
 } from 'react';
 import { toast } from 'react-toastify';
 import { ActionTypes } from '../reducers/orders/actions';
-import { ordersReducer } from '../reducers/orders/reducer';
+import { productsReducer } from '../reducers/orders/reducer';
 import { CartType } from '../types';
 
-interface OrderContextData {
+interface ProductContextData {
   order: CartType[];
   addProductToOrder: (newProducts: CartType) => void;
   updateProductAmount: (productId: number, amount: number) => void;
   removeProductFromCart: (productId: number) => void;
 }
 
-interface OrderContextProviderProps {
+interface ProductContextProviderProps {
   children: ReactNode;
 }
 
-const OrderContext = createContext({} as OrderContextData);
+const ProductContext = createContext({} as ProductContextData);
 
-export function OrderContextProvider({ children }: OrderContextProviderProps) {
-  const [productsInCartState, dispatch] = useReducer(ordersReducer, {
+export function ProductContextProvider({
+  children,
+}: ProductContextProviderProps) {
+  const [productsInCartState, dispatch] = useReducer(productsReducer, {
     order: [],
   });
 
@@ -65,7 +67,7 @@ export function OrderContextProvider({ children }: OrderContextProviderProps) {
   }, []);
 
   return (
-    <OrderContext.Provider
+    <ProductContext.Provider
       value={{
         order,
         addProductToOrder,
@@ -74,8 +76,8 @@ export function OrderContextProvider({ children }: OrderContextProviderProps) {
       }}
     >
       {children}
-    </OrderContext.Provider>
+    </ProductContext.Provider>
   );
 }
 
-export const useOrder = () => useContext(OrderContext);
+export const useProduct = () => useContext(ProductContext);

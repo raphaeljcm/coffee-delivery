@@ -6,11 +6,14 @@ import {
   Money,
   Trash,
 } from 'phosphor-react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { OrderAddressGroup } from '../../components/Input';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { OrderAddressGroup } from '../../components/OrderAddressGroup/index';
 import { ProductCounter } from '../../components/ProductCounter';
-import { useOrder } from '../../contexts/OrderContext';
+import { useProduct } from '../../contexts/ProductContext';
 import {
   ConfirmOrderContainer,
   Form,
@@ -19,9 +22,30 @@ import {
   ProductInCart,
 } from './styles';
 
+const newOrderFormValidationSchema = yup.object().shape({
+  cep: yup.number().required('Este campo é obrigatório'),
+  street: yup.string().required('Este campo é obrigatório'),
+  number: yup.number().required('Este campo é obrigatório'),
+  complement: yup.string(),
+  district: yup.string().required('Este campo é obrigatório'),
+  city: yup.string().required('Este campo é obrigatório'),
+  acronym: yup
+    .string()
+    .max(2, 'Somente duas letras')
+    .required('Este campo é obrigatório'),
+});
+
 export function Checkout() {
-  const { order, removeProductFromCart } = useOrder();
+  const [paymentType, setPaymentType] = useState<
+    'credit-card' | 'debit-card' | 'cash'
+  >('credit-card');
+  const { order, removeProductFromCart } = useProduct();
   const navigate = useNavigate();
+  const newOrderForm = useForm({
+    resolver: yupResolver(newOrderFormValidationSchema),
+  });
+
+  const { handleSubmit, reset } = newOrderForm;
 
   useEffect(() => {
     if (order.length === 0) {
@@ -39,46 +63,65 @@ export function Checkout() {
     }
   );
 
+  function handleCreateNewOrder() {
+    reset();
+    navigate('/success', { replace: true });
+  }
+
   return (
-    <Form className="container">
+    <Form className="container" onSubmit={handleSubmit(handleCreateNewOrder)}>
       <section>
         <h2>Complete seu pedido</h2>
         <div>
-          <FormContainer>
-            <div>
-              <MapPinLine color="#C47F17" size={22} />
+          <FormProvider {...newOrderForm}>
+            <FormContainer>
               <div>
-                <h3>Endereço de entrega</h3>
-                <p>Informe o endereço onde deseja receber seu pedido</p>
+                <MapPinLine color="#C47F17" size={22} />
+                <div>
+                  <h3>Endereço de entrega</h3>
+                  <p>Informe o endereço onde deseja receber seu pedido</p>
+                </div>
               </div>
-            </div>
 
-            <OrderAddressGroup />
-          </FormContainer>
-          <FormContainer>
-            <div>
-              <CurrencyDollar color="#8047F8" size={22} />
+              <OrderAddressGroup />
+            </FormContainer>
+            <FormContainer>
               <div>
-                <h3>Pagamento</h3>
-                <p>
-                  O pagamento é feito na entrega. Escolha a forma que deseja
-                  pagar
-                </p>
+                <CurrencyDollar color="#8047F8" size={22} />
+                <div>
+                  <h3>Pagamento</h3>
+                  <p>
+                    O pagamento é feito na entrega. Escolha a forma que deseja
+                    pagar
+                  </p>
+                </div>
               </div>
-            </div>
-            <PaymentMethodContainer>
-              <button type="button">
-                <CreditCard size={16} color="#8047F8" /> Cartão de Crédito
-              </button>
-              <button type="button">
-                <Bank size={16} color="#8047F8" /> Cartão de Débito
-              </button>
-              <button type="button">
-                <Money size={16} color="#8047F8" />
-                Dinheiro
-              </button>
-            </PaymentMethodContainer>
-          </FormContainer>
+              <PaymentMethodContainer>
+                <button
+                  type="button"
+                  onClick={() => setPaymentType('credit-card')}
+                  className={paymentType === 'credit-card' ? 'active' : ''}
+                >
+                  <CreditCard size={16} color="#8047F8" /> Cartão de Crédito
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setPaymentType('debit-card')}
+                  className={paymentType === 'debit-card' ? 'active' : ''}
+                >
+                  <Bank size={16} color="#8047F8" /> Cartão de Débito
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setPaymentType('cash')}
+                  className={paymentType === 'cash' ? 'active' : ''}
+                >
+                  <Money size={16} color="#8047F8" />
+                  Dinheiro
+                </button>
+              </PaymentMethodContainer>
+            </FormContainer>
+          </FormProvider>
         </div>
       </section>
 

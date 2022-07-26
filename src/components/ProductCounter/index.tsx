@@ -1,7 +1,7 @@
 import { Minus, Plus } from 'phosphor-react';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-import { useOrder } from '../../contexts/OrderContext';
+import { useProduct } from '../../contexts/ProductContext';
 import { CartType, CoffeeType } from '../../types';
 import { Cart } from '../Cart';
 import { ProductCounterContainer } from './style';
@@ -17,7 +17,7 @@ export function ProductCounter({
   coffee,
   isCheckoutPage,
 }: ProductCounterProps) {
-  const { order, addProductToOrder, updateProductAmount } = useOrder();
+  const { order, addProductToOrder, updateProductAmount } = useProduct();
   const [productAmount, setProductAmount] = useState(() => {
     const isProduct = order.find(prod => prod.id === coffee.id);
 
