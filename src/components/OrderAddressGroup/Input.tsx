@@ -16,7 +16,7 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
   return (
     <>
       <input {...rest} ref={ref} />
-      {!!error && <p>{error.type}</p>}
+      {!!error && <p className="error">{error.message}</p>}
     </>
   );
 };

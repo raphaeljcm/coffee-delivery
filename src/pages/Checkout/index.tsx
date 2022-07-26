@@ -23,9 +23,9 @@ import {
 } from './styles';
 
 const newOrderFormValidationSchema = yup.object().shape({
-  cep: yup.number().required('Este campo é obrigatório'),
+  cep: yup.string().required('Este campo é obrigatório'),
   street: yup.string().required('Este campo é obrigatório'),
-  number: yup.number().required('Este campo é obrigatório'),
+  number: yup.string().required('Este campo é obrigatório'),
   complement: yup.string(),
   district: yup.string().required('Este campo é obrigatório'),
   city: yup.string().required('Este campo é obrigatório'),

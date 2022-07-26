@@ -64,12 +64,16 @@ export const InputContainer = styled.div`
         -moz-appearance: textfield;
       }
 
-      ::placeholder {
+      &::placeholder {
         color: ${props => props.theme['base-label']};
+      }
+
+      &.error {
+        border-color: red;
       }
     }
 
-    p {
+    p.optional {
       position: absolute;
       top: 1rem;
       right: 1rem;
@@ -79,6 +83,12 @@ export const InputContainer = styled.div`
       line-height: 130%;
       color: ${props => props.theme['base-label']};
       font-style: italic;
+    }
+
+    p.error {
+      font-size: 0.75rem;
+      color: red;
+      margin-top: 0.5rem;
     }
   }
 `;
