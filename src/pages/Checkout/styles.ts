@@ -5,6 +5,7 @@ export const Form = styled.form`
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 2rem;
+  margin-top: ${pxToRem(40)};
 
   h2 {
     color: ${props => props.theme['base-subtitle']};
