@@ -12,11 +12,16 @@ export const HeaderContainer = styled.header`
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     div {
       display: flex;
       align-items: center;
       gap: 0.75rem;
     }
+  }
+
+  button {
+    all: unset;
   }
 `;
 
