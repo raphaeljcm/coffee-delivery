@@ -25,7 +25,7 @@ export const GlobalStyle = createGlobalStyle`
 
   .container {
     max-width: min(90rem, 90vw);
-    margin: auto;
+    margin-inline: auto;
   }
 
   ::-webkit-scrollbar {

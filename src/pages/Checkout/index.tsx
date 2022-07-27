@@ -21,6 +21,8 @@ import {
   PaymentMethodContainer,
   ProductInCart,
 } from './styles';
+import { useOrder } from '../../contexts/OrderContext';
+import { Order } from '../../types';
 
 const newOrderFormValidationSchema = yup.object().shape({
   cep: yup.string().required('Este campo é obrigatório'),
@@ -39,9 +41,10 @@ export function Checkout() {
   const [paymentType, setPaymentType] = useState<
     'credit-card' | 'debit-card' | 'cash'
   >('credit-card');
-  const { order, removeProductFromCart } = useProduct();
+  const { order, removeProductFromCart, resetProduct } = useProduct();
+  const { addOrder } = useOrder();
   const navigate = useNavigate();
-  const newOrderForm = useForm({
+  const newOrderForm = useForm<Order>({
     resolver: yupResolver(newOrderFormValidationSchema),
   });
 
@@ -63,10 +66,17 @@ export function Checkout() {
     }
   );
 
-  function handleCreateNewOrder() {
+  const handleCreateNewOrder = (data: Order) => {
+    const order = {
+      ...data,
+      number: Number(data.number),
+    };
+
+    addOrder(order);
     reset();
+    resetProduct();
     navigate('/success', { replace: true });
-  }
+  };
 
   return (
     <Form className="container" onSubmit={handleSubmit(handleCreateNewOrder)}>

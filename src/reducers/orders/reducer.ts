@@ -54,6 +54,11 @@ export function productsReducer(
         order: [...products],
       };
     }
+
+    case ActionTypes.RESET_STATE:
+      return {
+        order: [],
+      };
     default:
       return state;
   }

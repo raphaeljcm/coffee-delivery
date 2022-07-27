@@ -15,6 +15,7 @@ interface ProductContextData {
   addProductToOrder: (newProducts: CartType) => void;
   updateProductAmount: (productId: number, amount: number) => void;
   removeProductFromCart: (productId: number) => void;
+  resetProduct: () => void;
 }
 
 interface ProductContextProviderProps {
@@ -66,6 +67,14 @@ export function ProductContextProvider({
     }
   }, []);
 
+  const resetProduct = useCallback(() => {
+    try {
+      dispatch({ type: ActionTypes.RESET_STATE });
+    } catch (err) {
+      toast.error('An error ocurred');
+    }
+  }, []);
+
   return (
     <ProductContext.Provider
       value={{
@@ -73,6 +82,7 @@ export function ProductContextProvider({
         addProductToOrder,
         updateProductAmount,
         removeProductFromCart,
+        resetProduct,
       }}
     >
       {children}

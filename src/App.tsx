@@ -6,13 +6,16 @@ import { Router } from './Router';
 import { GlobalStyle } from './styles/global';
 import { defaultTheme } from './styles/themes/default';
 import 'react-toastify/dist/ReactToastify.css';
+import { OrderContextProvider } from './contexts/OrderContext';
 
 function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <BrowserRouter>
         <ProductContextProvider>
-          <Router />
+          <OrderContextProvider>
+            <Router />
+          </OrderContextProvider>
         </ProductContextProvider>
         <GlobalStyle />
         <ToastContainer />

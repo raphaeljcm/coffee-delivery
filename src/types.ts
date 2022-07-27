@@ -14,3 +14,11 @@ export type CartType = {
   amount: number;
   image: string;
 };
+
+export type Order = {
+  street: string;
+  district: string;
+  number: number;
+  city: string;
+  acronym: string;
+};
