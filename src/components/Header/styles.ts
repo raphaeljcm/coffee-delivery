@@ -7,6 +7,7 @@ export const HeaderContainer = styled.header`
   width: 100%;
   background-color: ${({ theme }) => theme.background};
   border-bottom: 1px solid hsla(0, 0%, 98%, 0.1);
+  z-index: 5;
 
   > div {
     display: flex;

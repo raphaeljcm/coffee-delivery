@@ -27,4 +27,15 @@ export const GlobalStyle = createGlobalStyle`
     max-width: min(90rem, 90vw);
     margin: auto;
   }
+
+  ::-webkit-scrollbar {
+    width: 0.6rem;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: ${props => props.theme['base-button']};
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: ${props => props.theme.purple};
+    border-radius: 1rem;
+  }
 `;
