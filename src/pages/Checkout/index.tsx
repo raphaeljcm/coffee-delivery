@@ -23,6 +23,8 @@ import {
 } from './styles';
 import { useOrder } from '../../contexts/OrderContext';
 import { Order } from '../../types';
+import { useModal } from '../../contexts/ModalContext';
+import { CheckoutModal } from '../../components/CheckoutModal';
 
 const newOrderFormValidationSchema = yup.object().shape({
   cep: yup.string().required('Este campo é obrigatório'),
@@ -41,9 +43,14 @@ export function Checkout() {
   const [paymentType, setPaymentType] = useState<
     'credit-card' | 'debit-card' | 'cash'
   >('credit-card');
-  const { order, removeProductFromCart, resetProduct } = useProduct();
-  const { addOrder } = useOrder();
   const navigate = useNavigate();
+
+  // Custom Hooks and Providers
+  const { order, resetProduct } = useProduct();
+  const { addOrder } = useOrder();
+  const { isModalOpen, handleOpenModal, handleCloseModal } = useModal();
+
+  // React-hook-form
   const newOrderForm = useForm<Order>({
     resolver: yupResolver(newOrderFormValidationSchema),
   });
@@ -145,10 +152,7 @@ export function Checkout() {
                 <h3>{prod.name}</h3>
                 <div>
                   <ProductCounter height="small" isCheckoutPage coffee={prod} />
-                  <button
-                    type="button"
-                    onClick={() => removeProductFromCart(prod.id)}
-                  >
+                  <button type="button" onClick={handleOpenModal}>
                     <Trash size={16} color="#8047F8" /> Remover
                   </button>
                 </div>
@@ -161,6 +165,11 @@ export function Checkout() {
                   }).format(prod.price * prod.amount)}
                 </span>
               </div>
+              <CheckoutModal
+                isOpen={isModalOpen}
+                onRequestClose={handleCloseModal}
+                prodId={prod.id}
+              />
             </ProductInCart>
           ))}
 

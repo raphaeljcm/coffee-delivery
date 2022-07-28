@@ -38,4 +38,47 @@ export const GlobalStyle = createGlobalStyle`
     background-color: ${props => props.theme.purple};
     border-radius: 1rem;
   }
+
+  .react-modal-overlay {
+    background-color: rgba(128, 71, 248, .3);
+
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 10;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .react-modal-content {
+    width: 90vw;
+    max-width: 576px;
+    background-color: ${props => props.theme.background};
+    padding: 1.5rem 2.12rem;
+    position: relative;
+    border-radius: .24rem;
+
+    p {
+      font-weight: 500;
+      font-size: 1rem;
+    }
+  }
+
+  .react-modal-close {
+    position: absolute;
+    right: 1.5rem;
+    top: 1.5rem;
+    border: 0;
+    background: transparent;
+
+    transition: filter .2s;
+
+    &:hover {
+      filter: brightness(.8);
+    }
+  }
 `;
