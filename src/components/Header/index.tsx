@@ -3,12 +3,15 @@ import { NavLink } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import logo from '../../assets/logo.svg';
 import { useProduct } from '../../contexts/ProductContext';
+import { useGeolocation } from '../../hooks/useGeolocation';
 import { Cart } from '../Cart';
 import { HeaderContainer, Map } from './styles';
 
 export function Header() {
   const { order } = useProduct();
   const isProducts = order.length > 0;
+
+  const location = useGeolocation();
 
   return (
     <HeaderContainer>
@@ -19,7 +22,9 @@ export function Header() {
         <div>
           <Map>
             <MapPin size={22} weight="fill" color="#8047F8" />
-            Porto Alegre, RS
+            {location.position
+              ? `${location.position?.city}, ${location.position?.state_code}`
+              : 'Habilite a localização'}
           </Map>
           <button
             type="button"

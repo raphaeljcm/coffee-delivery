@@ -1,7 +1,6 @@
 import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react';
 import coffeeDelivery from '../../assets/coffee-delivery.png';
 import { CoffeeSelector } from './CoffeeSelector';
-import { useGeolocation } from '../../hooks/useGeolocation.jsx';
 import {
   Background,
   CoffeesWrapper,
@@ -11,14 +10,6 @@ import {
 } from './styles';
 
 export function Home() {
-  const location = useGeolocation();
-  let jaFoi = false;
-
-  if (location && jaFoi === false) {
-    alert(location.position);
-    jaFoi = true;
-  }
-
   return (
     <main>
       <Background>

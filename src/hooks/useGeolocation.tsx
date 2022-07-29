@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 
 interface locationData {
-  position: string;
+  position?: {
+    city: string;
+    state_code: string;
+  };
   error?: string;
 }
 
@@ -16,10 +19,15 @@ export const useGeolocation = () => {
           const location = await fetch(
             `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=35f709f4ef1e401c8ad997c809b4a6a3`
           ).then(res => res.json());
-          setLocation({ position: location.results[0].formatted });
+          setLocation({
+            position: {
+              city: location.results[0].components.village,
+              state_code: location.results[0].components.state_code,
+            },
+          });
         },
         error => {
-          setLocation({ position: '', error: error.message });
+          setLocation({ error: error.message });
         }
       );
     } else {
