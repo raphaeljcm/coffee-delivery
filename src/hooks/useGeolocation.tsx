@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 interface locationData {
   position?: {
-    city: string;
+    state: string;
     state_code: string;
   };
   error?: string;
@@ -21,7 +22,7 @@ export const useGeolocation = () => {
           ).then(res => res.json());
           setLocation({
             position: {
-              city: location.results[0].components.village,
+              state: location.results[0].components.state,
               state_code: location.results[0].components.state_code,
             },
           });
@@ -31,7 +32,7 @@ export const useGeolocation = () => {
         }
       );
     } else {
-      alert('O seu navegador não suporta geolocation.');
+      toast.error('O seu navegador não tem suporte a geolocalização');
     }
   }, []);
 

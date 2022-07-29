@@ -23,7 +23,7 @@ export function Header() {
           <Map>
             <MapPin size={22} weight="fill" color="#8047F8" />
             {location.position
-              ? `${location.position?.city}, ${location.position?.state_code}`
+              ? `${location.position.state}, ${location.position.state_code}`
               : 'Habilite a localização'}
           </Map>
           <button
