@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 interface locationData {
   position?: {
-    city: string;
+    state: string;
     state_code: string;
   };
   error?: string;
@@ -21,7 +21,7 @@ export const useGeolocation = () => {
           ).then(res => res.json());
           setLocation({
             position: {
-              city: location.results[0].components.village,
+              state: location.results[0].components.state,
               state_code: location.results[0].components.state_code,
             },
           });
