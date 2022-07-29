@@ -15,7 +15,7 @@ export function Home() {
   let jaFoi = false;
 
   if (location && jaFoi === false) {
-    alert(location);
+    alert(location.position);
     jaFoi = true;
   }
 
