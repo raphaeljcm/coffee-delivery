@@ -30,6 +30,12 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
+  @media (max-width: 270px) {
+    html {
+      font-size: 60%;
+    }
+  }
+
   body {
     background-color: ${props => props.theme.background};
     color: ${props => props.theme['base-title']};
