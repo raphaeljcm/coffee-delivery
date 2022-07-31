@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { devices } from '../../styles/functions/func';
 
 export const HeaderContainer = styled.header`
   padding: 2rem 0;
@@ -8,6 +9,12 @@ export const HeaderContainer = styled.header`
   background-color: ${({ theme }) => theme.background};
   border-bottom: 1px solid hsla(0, 0%, 98%, 0.1);
   z-index: 5;
+
+  @media ${devices.mobileL} {
+    img {
+      width: 80%;
+    }
+  }
 
   > div {
     display: flex;

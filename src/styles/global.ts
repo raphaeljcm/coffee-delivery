@@ -18,6 +18,12 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
+  @media ${devices.mobileM} {
+    html {
+      font-size: 85%;
+    }
+  }
+
   body {
     background-color: ${props => props.theme.background};
     color: ${props => props.theme['base-title']};
