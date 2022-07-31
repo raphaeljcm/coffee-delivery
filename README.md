@@ -2,11 +2,13 @@
 
 </br>
 
-<h2>Tecnologies used so far</h2>
+<h2>Tecnologies used</h2>
 
 - ReactJS
 - TypeScript
 - React Router Dom
+- React Hook Form
+- Yup
 - Phosphor Icons
 - Styled Components
 - JSON Server
