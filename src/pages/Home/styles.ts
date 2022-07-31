@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import backgroundImg from '../../assets/home-background.png';
+import { devices } from '../../styles/functions/func';
 
 export const Background = styled.div`
   background: ${props => `url(${backgroundImg}) no-repeat center,
@@ -19,6 +20,16 @@ export const HomeContainer = styled.section`
   justify-content: space-between;
   gap: 3.5rem;
   padding-block: 5rem;
+
+  img {
+    display: block;
+  }
+
+  @media ${devices.laptop} {
+    img {
+      display: none;
+    }
+  }
 `;
 
 export const HomeContent = styled.div`
@@ -26,6 +37,10 @@ export const HomeContent = styled.div`
   flex-direction: column;
   gap: 4.12rem;
   max-width: 95%;
+
+  @media ${devices.mobileL} {
+    text-align: center;
+  }
 
   > div:first-child {
     h1 {
@@ -87,5 +102,16 @@ export const CoffeesWrapper = styled.section`
     display: flex;
     flex-wrap: wrap;
     gap: 2.5rem 2rem;
+
+    @media ${devices.mobileL} {
+      max-height: 50rem;
+      padding-block: 1rem;
+      flex-direction: column;
+      overflow-x: scroll;
+
+      ::-webkit-scrollbar {
+        height: 0.8rem;
+      }
+    }
   }
 `;

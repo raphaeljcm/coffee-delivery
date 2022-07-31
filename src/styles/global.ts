@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { devices } from './functions/func';
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -9,6 +10,12 @@ export const GlobalStyle = createGlobalStyle`
 
   :focus {
     outline-color: ${props => props.theme['yellow-dark']};
+  }
+
+  @media ${devices.mobileL} {
+    html {
+      font-size: 87.5%;
+    }
   }
 
   body {
