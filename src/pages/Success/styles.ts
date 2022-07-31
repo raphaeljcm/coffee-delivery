@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { pxToRem } from '../../styles/functions/func';
+import { devices, pxToRem } from '../../styles/functions/func';
 
 export const SuccessContainer = styled.div`
   margin-top: ${pxToRem(80)};
@@ -18,11 +18,30 @@ export const SuccessContainer = styled.div`
     line-height: 130%;
   }
 
+  @media ${devices.tablet} {
+    h2,
+    > p {
+      text-align: center;
+    }
+  }
+
   > div {
     display: flex;
     justify-content: space-between;
     margin-top: ${pxToRem(40)};
     align-items: center;
+
+    @media ${devices.tablet} {
+      flex-direction: column;
+    }
+
+    @media ${devices.mobileL} {
+      img {
+        width: 80%;
+        height: 80%;
+        margin-top: 2rem;
+      }
+    }
 
     > div {
       padding: ${pxToRem(40)};
@@ -33,6 +52,10 @@ export const SuccessContainer = styled.div`
       display: flex;
       flex-direction: column;
       gap: 2rem;
+
+      @media ${devices.mobileL} {
+        min-width: 100%;
+      }
 
       // BORDER GRADIENT
       &::before {

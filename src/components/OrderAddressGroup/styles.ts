@@ -1,11 +1,19 @@
 import styled from 'styled-components';
-import { pxToRem } from '../../styles/functions/func';
+import { devices, pxToRem } from '../../styles/functions/func';
 
 export const InputContainer = styled.div`
   display: grid;
   grid-template-columns: ${pxToRem(200)} 1fr ${pxToRem(60)};
   grid-auto-flow: dense;
   gap: 1rem 0.75rem;
+
+  @media ${devices.mobileL} {
+    grid-template-columns: ${pxToRem(100)} 1fr ${pxToRem(60)};
+  }
+
+  @media ${devices.mobileS} {
+    grid-template-columns: ${pxToRem(80)} 1fr ${pxToRem(50)};
+  }
 
   div {
     position: relative;
@@ -21,6 +29,10 @@ export const InputContainer = styled.div`
     &#number {
       grid-row-start: 3;
       width: ${pxToRem(200)};
+
+      @media ${devices.mobileL} {
+        width: ${pxToRem(80)};
+      }
     }
 
     &#complement {
@@ -31,15 +43,20 @@ export const InputContainer = styled.div`
     &#district {
       grid-row-start: 4;
       width: ${pxToRem(200)};
+
+      @media ${devices.mobileL} {
+        width: auto;
+        grid-column-start: span 3;
+      }
     }
 
     &#city {
-      grid-row-start: 4;
-      grid-column-start: span 1;
+      grid-row-start: 5;
+      grid-column-start: span 2;
     }
 
     &#acronym {
-      grid-row-start: 4;
+      grid-row-start: 5;
     }
 
     input {

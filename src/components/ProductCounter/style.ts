@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { pxToRem } from '../../styles/functions/func';
+import { devices, pxToRem } from '../../styles/functions/func';
 
 interface ProductCounterContainerProps {
   height: 'small' | 'medium';
@@ -29,6 +29,13 @@ export const ProductCounterContainer = styled.div<ProductCounterContainerProps>`
 
     &:disabled {
       cursor: not-allowed;
+    }
+
+    @media ${devices.mobileS} {
+      svg {
+        width: 10px;
+        height: 10px;
+      }
     }
   }
 

@@ -24,6 +24,12 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
+  @media ${devices.mobileS} {
+    html {
+      font-size: 70%;
+    }
+  }
+
   body {
     background-color: ${props => props.theme.background};
     color: ${props => props.theme['base-title']};

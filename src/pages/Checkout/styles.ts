@@ -1,11 +1,15 @@
 import styled from 'styled-components';
-import { pxToRem } from '../../styles/functions/func';
+import { devices, pxToRem } from '../../styles/functions/func';
 
 export const Form = styled.form`
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 2rem;
-  margin-top: ${pxToRem(40)};
+  margin-block: ${pxToRem(40)};
+
+  @media ${devices.tablet} {
+    grid-template-columns: 1fr;
+  }
 
   h2 {
     color: ${props => props.theme['base-subtitle']};
@@ -21,6 +25,10 @@ export const FormContainer = styled.div`
   background-color: ${props => props.theme['base-card']};
   border-radius: 6px;
   padding: 2.5rem;
+
+  @media ${devices.mobileS} {
+    padding: 2rem;
+  }
 
   &:first-child {
     margin-bottom: 0.75rem;
@@ -50,6 +58,10 @@ export const PaymentMethodContainer = styled.div`
   display: flex;
   column-gap: 1rem;
   flex-wrap: wrap;
+
+  @media ${devices.laptop} {
+    row-gap: 1rem;
+  }
 
   button {
     background-color: ${props => props.theme['base-button']};
