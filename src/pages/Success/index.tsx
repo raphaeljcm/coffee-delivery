@@ -1,8 +1,20 @@
 import { CurrencyDollar, MapPin, Timer } from 'phosphor-react';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import * as S from './styles';
 import successImg from '../../assets/success-illustration.png';
+import { useOrder } from '../../contexts/OrderContext';
 
 export function Success() {
+  const { order } = useOrder();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (order.orderDone !== true) {
+      navigate('/', { replace: true });
+    }
+  }, [navigate, order.orderDone]);
+
   return (
     <S.SuccessContainer className="container">
       <h2>Uhu! Pedido confirmado</h2>
@@ -16,10 +28,11 @@ export function Success() {
             </S.SuccessDetails>
             <div>
               <p>
-                Entrega em{' '}
-                <span className="bold">Rua João Daniel Martinelli, 102</span>
+                Entrega em <span className="bold">{order.street}</span>
               </p>
-              <p>Farrapos - Porto Alegre, RS</p>
+              <p>
+                {order.city} - {order.district}, {order.acronym}
+              </p>
             </div>
           </div>
           <div>
@@ -37,7 +50,13 @@ export function Success() {
             </S.SuccessDetails>
             <div>
               <p>Pagamento na entrega</p>
-              <p className="bold">Cartão de Crédito</p>
+              {order.paymentMethod === 'credit-card' ? (
+                <p className="bold">Cartão de Crédito</p>
+              ) : order.paymentMethod === 'debit-card' ? (
+                <p className="bold">Cartão de Débito</p>
+              ) : (
+                <p className="bold">Dinheiro</p>
+              )}
             </div>
           </div>
         </div>

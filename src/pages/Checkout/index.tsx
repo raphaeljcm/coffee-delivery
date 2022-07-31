@@ -77,6 +77,8 @@ export function Checkout() {
     const order = {
       ...data,
       number: Number(data.number),
+      orderDone: true,
+      paymentMethod: paymentType,
     };
 
     addOrder(order);

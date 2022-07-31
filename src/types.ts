@@ -21,4 +21,6 @@ export type Order = {
   number: number;
   city: string;
   acronym: string;
+  orderDone: boolean;
+  paymentMethod: string;
 };
