@@ -49,7 +49,7 @@ export const SuccessContainer = styled.div`
         align-items: center;
         column-gap: 0.75rem;
 
-        > div {
+        div {
           p {
             color: ${props => props.theme['base-text']};
             line-height: 130%;
