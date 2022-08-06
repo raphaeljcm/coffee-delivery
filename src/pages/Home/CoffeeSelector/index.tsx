@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import { SyncLoader } from 'react-spinners';
 import { ProductCounter } from '../../../components/ProductCounter';
 import api from '../../../services/api';
 import { CoffeeType } from '../../../types';
-import { CoffeeContainer, CoffeeDetails } from './stytes';
+import { CoffeeContainer, CoffeeDetails } from './styles';
 
 export function CoffeeSelector() {
   const [coffees, setCoffees] = useState<CoffeeType[]>([]);
@@ -18,6 +19,14 @@ export function CoffeeSelector() {
       toast.error('An error occured, sorry');
     }
   }, []);
+
+  if (coffees.length === 0) {
+    return (
+      <div className="container">
+        <SyncLoader color="#8047F8" />
+      </div>
+    );
+  }
 
   return (
     <>
