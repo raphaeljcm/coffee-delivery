@@ -16,16 +16,21 @@ export const CoffeeContainer = styled.div`
     margin-bottom: 0.5rem;
   }
 
-  img + div {
-    background-color: ${props => props.theme['yellow-light']};
-    padding: 0.25rem 0.5rem;
-    border-radius: 100px;
-    color: ${props => props.theme['yellow-dark']};
-    font-weight: 700;
-    line-height: 130%;
-    font-size: 0.625rem;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
+  .types {
+    display: flex;
+    gap: 0.5rem;
+
+    div {
+      background-color: ${props => props.theme['yellow-light']};
+      padding: 0.25rem 0.5rem;
+      border-radius: 100px;
+      color: ${props => props.theme['yellow-dark']};
+      font-weight: 700;
+      line-height: 130%;
+      font-size: 0.625rem;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
   }
 
   h3 {

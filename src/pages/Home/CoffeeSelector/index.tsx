@@ -24,7 +24,11 @@ export function CoffeeSelector() {
       {coffees.map(coffee => (
         <CoffeeContainer key={coffee.name}>
           <img src={coffee.image} alt={coffee.name} />
-          <div>Tradicional</div>
+          <div className="types">
+            {coffee.types.map(type => (
+              <div key={type}>{type}</div>
+            ))}
+          </div>
           <h3>{coffee.name}</h3>
           <p>{coffee.content}</p>
 
